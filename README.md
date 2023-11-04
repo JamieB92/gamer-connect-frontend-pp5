@@ -115,5 +115,7 @@ As a GamerConnect user, I plan to investigate all the posts created by a specifi
 ### Profile Customization: 
 As a logged-in GamerConnect user, I want to modify my profile by altering my profile picture and updating my bio to create a personalized gaming identity.
 
+## Design
 
-
+#### Colors: 
+![color-palete](https://github.com/JamieB92/Gamer-Connect-Frontend-PP4/assets/117354147/10f0a07e-09cf-464a-9e78-291c79091c3d)

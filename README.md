@@ -1,4 +1,7 @@
 # GamerConnect
+
+![Gamer-Connect-Logo](https://github.com/JamieB92/Gamer-Connect-Frontend-PP4/assets/117354147/82333fa3-9cae-4936-91e4-dfd48b885e3e)
+
 Welcome to GamerConnect, the ultimate social media platform for gamers!
 
 GamerConnect is a dynamic and inclusive platform designed for gamers of all ages and backgrounds. Whether you're a seasoned pro or just starting your gaming journey, our platform is tailored to bring the gaming community together.

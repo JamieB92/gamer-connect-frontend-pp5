@@ -104,3 +104,58 @@ As a developer, it's crucial to create a database and integrate it into the proj
 
 #### Colors: 
 ![color-palete](https://github.com/JamieB92/Gamer-Connect-Frontend-PP4/assets/117354147/10f0a07e-09cf-464a-9e78-291c79091c3d)
+
+
+ # Deployment
+Here you can find the instructions to recreate the deployment of the project
+
+## Backend Deployment
+
+### Github
+- In the top right of the page click the plus symbol
+- Click New Repository
+- Select Template - Code-Institute-Org/gitpod-full-template
+- Name the repository (Reference Backend)
+- Click Create
+
+### Gitpod (Please use Chrome or Firefox)
+- open a new tab in your browser and go to your browsers extensions store
+- Search for Gitpod
+- Install Gitpod extension
+- Go back to your newly created repo
+- Click the Green Gitpod Open button
+- Click Continue with Github 
+- Gitpod will now create a workspace 
+
+### Django Setup
+- In your IDE open a new terminal
+- Enter enter in the terminal pip3 install 'django<4'
+- Enter in the terminal django-admin startproject {{project_name}} .
+- Enter in the terminal to create an App with - python manage.py startapp {{app_name}}
+- Add the new app to the allowed apps in the settings.py file.
+
+
+### Cloudinary and Pillow
+- Go to Cloudinary - https://cloudinary.com/
+- Create an account
+- Click dashboard
+- Copy your cloudinary API Environment variable
+- Install Cloudinary in the terminal with - pip install django-cloudinary-storage
+- Install Pillow in the terminal with - pip install Pillow
+- Now go to settings.py in your project 
+- In installed apps add 'cloudinary_storage' above 'django.contrib.staticfiles' and 'cloudinary' below.
+- create an env.py file in the top directory
+- add your cloudinary API Environment variable to the env.py file
+- add the following to settings.py underneath "from pathlib import Path":
+        
+        import os
+
+        if os.path.exists('env.py'):
+            import env
+
+        CLOUDINARY_STORAGE = {
+            'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
+        }
+        MEDIA_URL = '/media/'
+        DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+

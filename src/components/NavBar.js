@@ -1,10 +1,11 @@
 import React from 'react'
-import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Container, Navbar, Nav } from 'react-bootstrap';
+import styles from "../styles/NavBar.module.css"
 import logo from "../assets/logo.png"
 
 function NavBar() {
   return (
-    <Navbar bg="light" expand="md" fixed="top">
+    <Navbar expand="md" fixed="top" className={styles.NavBar}>
       <Container> 
       <Navbar.Brand><img src={logo} alt="Logo" height={50}/> GamerConnect</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

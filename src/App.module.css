@@ -1,0 +1,16 @@
+.App {
+    font-family: 'Lexend', sans-serif;
+    background-color: #e7e5e4;
+    color: #0c0a09;
+    min-height: 100vh;
+}
+
+i {
+    color: #0c0a09;
+}
+
+i:hover {
+    cursor: pointer;
+    transition: color ease-in-out 0.2s;
+    color: #fafaf9;
+}

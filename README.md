@@ -203,6 +203,7 @@ Here you can find the instructions to recreate the deployment of the project
 
 - You should see the react logo now open in the local server
 
+
 ### Connecting FrontEnd with the Backend in Heroku:
 - Go to Heroku
 - Load your front end app (gamer-connect)
@@ -227,4 +228,15 @@ Here you can find the instructions to recreate the deployment of the project
         Value - {{front_end_dev_server_url}}
 
 Note: Gitpod will change the dev server URL every so often so update when needed
+
+### Axios 
+
+- Run the following in the terminal:
+
+        npm install axios
+
+- Create a folder named api in the src folder
+- create a file named axiosDefaults.js
+- Setup your api settings, when setting the base URL make sure to use your Heroku backend apps URL.
+- import axios in to APP.js
 

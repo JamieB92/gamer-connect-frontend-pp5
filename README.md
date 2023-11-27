@@ -159,3 +159,72 @@ Here you can find the instructions to recreate the deployment of the project
         MEDIA_URL = '/media/'
         DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+
+## Frontend Setup:
+
+### Github
+- In the top right of the page click the plus symbol
+- Click New Repository
+- Name the repository using lowercase to allow React to create an app
+- Click Create
+
+### Gitpod (Please use Chrome or Firefox)
+- open a new tab in your browser and go to your browsers extensions store
+- Search for Gitpod
+- Install Gitpod extension
+- Go back to your newly created repo
+- Click the Green Gitpod Open button
+- Click Continue with Github 
+- Gitpod will now create a workspace 
+
+### Heroku Setup: 
+
+- Navigate to [heroku](https://id.heroku.com/login) and create an account
+- Click the "New" button.
+- Select "Create New App."
+- Provide an app name.
+- Choose a region and click "Create App."
+- Select region and click create app
+
+### Setting Up React Using CI template:
+
+- Enter the following in your workspaces terminal (This may take a couple of minuetes).
+
+        npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm
+
+- Enter npm install in the terminal
+- Then enter the following to fix [issue](https://github.com/JamieB92/gamer-connect-frontend-pp5/issues/1) with CI template:
+
+        npm i react-scripts@latest
+
+- Enter in ther terminal
+
+        npm start
+
+- You should see the react logo now open in the local server
+
+### Connecting FrontEnd with the Backend in Heroku:
+- Go to Heroku
+- Load your front end app (gamer-connect)
+- Open App 
+- Copy URL
+- Now load your API project (gamer-connect-api)
+- Go to settings 
+- Reveal config vars
+- create a new Var and paste the URL in the value: 
+
+        Key - CLIENT_ORGIN  
+        Value - {{front_end_project_url}}
+
+- Now go back to Gitpod
+- Go to your development server and copy URL
+- Go back to Heroku
+- Go to settings 
+- Reveal config vars
+- create a new Var and paste the URL in the value: 
+
+        Key - CLIENT_ORGIN_DEV 
+        Value - {{front_end_dev_server_url}}
+
+Note: Gitpod will change the dev server URL every so often so update when needed
+

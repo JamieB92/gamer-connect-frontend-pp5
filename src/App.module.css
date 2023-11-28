@@ -1,14 +1,24 @@
 .App {
     font-family: 'Lexend', sans-serif;
-    background-color: #e7e5e4;
+    background-color: #fafaf9;
     color: #0c0a09;
     min-height: 100vh;
 }
+
 
 .Main {
     padding-top: 81px;
 }
 
+.Content {
+    background-color: #a8a29e;
+    padding: 10px;
+    border: 1px solid #dadadf;
+    border-radius: 30px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe,
+               -15px -15px 30px #ffffff;
+  }
 
 a {
     color: #0c0a09
@@ -33,3 +43,22 @@ i:hover {
     transition: color ease-in-out 0.2s;
     color: #fafaf9;
 }
+
+
+.FillerImage {
+    object-fit: cover;
+    border-radius: 30px;
+    height: 100%;
+    width: 75%;
+  }
+  
+.Image {
+    max-height: 40vh;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  
+* {
+    box-sizing: border-box;
+  }
+

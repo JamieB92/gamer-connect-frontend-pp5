@@ -36,6 +36,9 @@ a:hover i {
 
 i {
     color: #0c0a09;
+    font-size: 1.6rem;
+    padding: 7px;
+    vertical-align: middle;
 }
 
 i:hover {

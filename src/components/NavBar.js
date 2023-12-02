@@ -6,12 +6,14 @@ import { NavLink } from "react-router-dom";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import UserAvatar from './UserAvatar';
 import axios from 'axios';
+import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 
 function NavBar() {
 
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
+  const {expanded, setExpanded, ref} = useClickOutsideToggle();
 
   const handleSignOut = async () => {
     try {
@@ -59,7 +61,6 @@ function NavBar() {
 
   <NavLink
       className={styles.NavLink}
-      activeClassName={styles.Active}
       to="/"
       onClick={handleSignOut}
     >
@@ -86,13 +87,16 @@ function NavBar() {
   );
 
   return (
-    <Navbar expand="md" fixed="top" className={styles.NavBar}>
+    <Navbar expanded={expanded} expand="lg" fixed="top" className={styles.NavBar}>
       <Container> 
         <NavLink to="/">
           <Navbar.Brand><img src={logo} alt="Logo" height={50}/> GamerConnect</Navbar.Brand>
         </NavLink>
         
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          ref={ref}
+          onClick={() => setExpanded(!expanded)} 
+          aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-right">
               <NavLink 
@@ -112,3 +116,4 @@ function NavBar() {
 }
 
 export default NavBar
+

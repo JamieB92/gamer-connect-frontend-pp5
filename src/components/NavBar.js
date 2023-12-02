@@ -64,7 +64,7 @@ function NavBar() {
       to="/"
       onClick={handleSignOut}
     >
-    <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+    <i className="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
     </NavLink>
   </>
   const loggedOutIcons = (
@@ -74,7 +74,7 @@ function NavBar() {
         activeClassName={styles.Active}
         to="/signin"
       >
-        <i class="fa-solid fa-right-to-bracket"></i> Sign In
+        <i className="fa-solid fa-right-to-bracket"></i> Sign In
       </NavLink>
       <NavLink
         className={styles.NavLink}

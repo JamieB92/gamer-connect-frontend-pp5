@@ -49,6 +49,9 @@ As a GamerConnect user, I want to check out individual posts to learn more about
 
 ## Epic 2 - Content Discovery & Engagement:
 
+### Site Navigation
+As a GamerConnect user, I want a responsive navbar that allows me to easily move between different pages on the site.
+
 ### Show Appreciation: 
 As a GamerConnect user, I want to show my liking for interesting posts to express support.
 
@@ -99,6 +102,29 @@ As a developer, I must ensure the successful deployment of the project's fronten
 
 ### Database Setup
 As a developer, it's crucial to create a database and integrate it into the project for effective information storage.
+
+# Features
+
+### Site Navigation
+
+#### User Story: 
+As a GamerConnect user, I want a responsive navbar that allows me to easily move between different pages on the site.
+
+#### Image Place Holder
+
+A navigation bar has been implemented, transitioning into a hamburger menu on smaller devices to prevent navigation item overlap. This ensures users can access and navigate the site seamlessly on devices of any size. The navbar is user-friendly, allowing easy navigation and smooth transitions between each page.
+The Navbar shows distinct icons based on the user's sign-in status, enabling them to easily distinguish whether they are logged in or out.
+
+### New Account Creation
+
+#### User Story:
+As a GamerConnect user, I want to create a new account to enjoy all the benefits available to registered users.
+
+#### Placeholder image
+
+A user-friendly sign-up page has been introduced, providing a clear and straightforward registration process. This enables users to register with GamerConnect, establishing a profile for them upon registration. After completing the registration, users are directed to a login page where they can access their account using the created username and password. Once logged in, users gain access to all privileges reserved for the GamerConnect Community.
+
+
 
 ## Design
 

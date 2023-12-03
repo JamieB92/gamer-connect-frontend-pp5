@@ -1,0 +1,13 @@
+.Post {
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    border: none;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  
+  .Post figure,
+  h5 {
+    margin: 0 0;
+  }
+

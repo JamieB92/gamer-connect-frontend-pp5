@@ -266,3 +266,8 @@ Note: Gitpod will change the dev server URL every so often so update when needed
 - Setup your api settings, when setting the base URL make sure to use your Heroku backend apps URL.
 - import axios in to APP.js
 
+
+## Credits
+
+- Upload image Icon - https://uxwing.com/upload-image-icon/
+- 

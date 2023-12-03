@@ -28,7 +28,7 @@ function NavBar() {
     <NavLink
     className={styles.NavLink}
     activeClassName={styles.Active}
-    to="/post/create"
+    to="/posts/create"
   >
     <i class="fa-solid fa-plus"></i> Create
   </NavLink>

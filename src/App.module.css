@@ -18,6 +18,7 @@
     background: #e0e0e0;
     box-shadow: 15px 15px 30px #bebebe,
                -15px -15px 30px #ffffff;
+
   }
 
 a {
@@ -65,3 +66,7 @@ i:hover {
     box-sizing: border-box;
   }
 
+
+input[type="file"] {
+    display: none;
+  }

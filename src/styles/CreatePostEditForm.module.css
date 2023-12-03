@@ -1,0 +1,9 @@
+.Container {
+    min-height: 343px;
+    margin: 10px;
+  }
+ 
+.UploadContainer {
+  min-width: 200px;
+  min-height: 400px;
+} 

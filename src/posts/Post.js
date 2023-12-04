@@ -17,6 +17,7 @@ const Post = (props) => {
     post_header,
     caption,
     upload_image,
+    upload_clip,
     edited_on,
     postPage,
   } = props;
@@ -39,8 +40,18 @@ const Post = (props) => {
         </Media>
       </Card.Body>
       <Link to={`/posts/${id}`}>
-        <Card.Img src={upload_image} alt={post_header} />
-      </Link>
+        {upload_image ? (
+          <Card.Img src={upload_image} alt={post_header} />
+        ) : upload_clip ? (
+            <div>
+              <video width="700" height="500" controls>
+                <source src={upload_clip} type="video/mp4" />
+              </video>
+            </div>      
+        ) : (
+          <div>No Media Exists</div>
+        )}
+      </Link> 
       <Card.Body>
         {post_header && <Card.Title className="text-center">{post_header}</Card.Title>}
         {caption && <Card.Text>{caption}</Card.Text>}

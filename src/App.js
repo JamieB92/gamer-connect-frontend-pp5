@@ -7,6 +7,8 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import CreatePostWithImageForm from "./posts/CreatePostWithImageForm";
 import PostPage from "./posts/PostPage";
+import CreatePostWithVideoForm from "./posts/CreatePostWithVideoForm";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
 
@@ -22,7 +24,9 @@ function App() {
               <Route exact path="/" render={() => <h1>Home Page</h1>} />
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm/>} />
+              <Route exact path="/posts/create" render={() => <CreatePostWithVideoForm />} />
               <Route exact path="/posts/create" render={() => <CreatePostWithImageForm />} />
+
               <Route exact path="/posts/:id" render={() => <PostPage />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>

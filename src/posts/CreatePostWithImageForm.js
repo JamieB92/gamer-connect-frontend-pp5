@@ -144,7 +144,7 @@ function CreatePostWithImageForm() {
               <Form.File
                 id="image-upload"
                 name="upload_image"
-                accept="upload_image/*"
+                accept="image/*"
                 onChange={handleChangeImage}
                 ref={uploadImage}
               />

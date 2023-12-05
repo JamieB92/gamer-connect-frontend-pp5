@@ -6,6 +6,7 @@
 .UploadContainer {
   min-width: 200px;
   min-height: 400px;
+  margin-bottom: 50px;
 } 
 
 .formHeaderContainer {
@@ -16,4 +17,10 @@
 
 .formHeader {
   margin: 50px
+}
+
+video {
+  width: 100%;
+  height: auto;
+  padding: 10px;
 }

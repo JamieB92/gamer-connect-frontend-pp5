@@ -127,10 +127,19 @@ As a GamerConnect user, I want to create a new account to enjoy all the benefits
 
 A user-friendly sign-up page has been introduced, providing a clear and straightforward registration process. This enables users to register with GamerConnect, establishing a profile for them upon registration. After completing the registration, users are directed to a login page where they can access their account using the created username and password. Once logged in, users gain access to all privileges reserved for the GamerConnect Community.
 
-### Create a post with an Image
+### Create a post with a Image
 
 #### User Story
 As a GamerConnect user, I aim to share my gaming experiences by crafting posts with an image, facilitating connections with the gaming community.
+
+#### Placeholder Image
+
+For a registered user, a user-friendly form has been developed to effortlessly facilitate post creation. This not only encourages users to express their creativity but also contributes to the growth of the community and enhances the overall application experience. The form has been designed to be straightforward and intuitive, ensuring a seamless and enjoyable posting process for users.
+
+### Create a post with a Video
+
+#### User Story
+As a GamerConnect user, I aim to share my gaming experiences by crafting posts with a video, facilitating connections with the gaming community.
 
 #### Placeholder Image
 

@@ -147,7 +147,7 @@ function CreatePostWithVideoForm() {
               <Form.File
                 id="video-upload"
                 name="upload_clip"
-                accept="video/*"
+                accept="video/mp4,video/x-m4v,video/*"
                 onChange={handleChangeVideo}
                 ref={uploadClip}
               />

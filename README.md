@@ -145,6 +145,48 @@ As a GamerConnect user, I aim to share my gaming experiences by crafting posts w
 
 For a registered user, a user-friendly form has been developed to effortlessly facilitate post creation. This not only encourages users to express their creativity but also contributes to the growth of the community and enhances the overall application experience. The form has been designed to be straightforward and intuitive, ensuring a seamless and enjoyable posting process for users.
 
+
+### View all Posts
+
+#### User Story
+As a GamerConnect user, I want to easily browse through the newest posts on the site.
+
+#### PlaceHolder image
+
+Users can effortlessly navigate through the content available on GamerConnect using the seamlessly designed post page. The interface provides a user-friendly platform where individuals can leisurely scroll through an organized presentation of the freshest posts. 
+This ensures that users indulge in a fluid and instinctive browsing encounter, enhancing their overall exploration of the latest updates and engaging content.
+
+### View an individual posts details
+
+#### User Story
+As a GamerConnect user, I want to check out individual posts to learn more about interesting gaming posts.
+
+#### Placeholder image
+
+Upon selecting a post of interest, users are directed to the post view interface, where they can delve into a detailed examination of the individual post. Within this post view, users gain the ability to explore the content more comprehensively and engage further by perusing all associated comments. This seamless transition provides users with an immersive experience, enabling them to interact extensively with the content and participate in the broader community conversation surrounding the post.
+
+### Show Appreciation
+
+#### User Story
+As a GamerConnect user, I want to show my liking for interesting posts to express support.
+
+#### Placeholder image
+
+Users have the opportunity to convey their endorsement and encouragement on GamerConnect through the simple yet impactful action of liking posts. 
+This interactive feature serves as a precise gauge, effectively mirroring users' genuine appreciation for captivating and noteworthy content within the platform. 
+Engaging in the process of liking a post has been designed to be effortlessly straightforward, ensuring a seamless and expeditious experience for users, thereby contributing to a user-friendly and enjoyable interaction with the platform.
+
+### Keyword Based Search 
+
+#### User Story:
+
+As a GamerConnect user, I aim to search for posts and user profiles using keywords to find content and gamers matching my interests.
+
+#### Placeholder image
+
+
+Users can easily find posts and user profiles on GamerConnect by using relevant keywords. The search function accurately retrieves content aligned with the entered keywords, ensuring a simple and smooth experience through the user-friendly interface.
+
 ## Design
 
 #### Colors: 

@@ -291,11 +291,4 @@ Note: Gitpod will change the dev server URL every so often so update when needed
 - Upload image Icon - https://uxwing.com/upload-image-icon/
 - Card - https://uiverse.io/adamgiebl/strong-zebra-87 
 - No results image - https://www.freepik.com/free-vector/game-with-glitch-effect_7997336.htm#query=game%20over&position=0&from_view=search&track=ais&uuid=0e1e2267-04f0-4cb9-9f89-6bd8403ca94a
-- https://uiverse.io/chethan025/tasty-gecko-98
-
-<Form className={styles.searchForm}>
-        <input 
-        type="text" 
-        className={styles.searchBar} 
-        placeholder="Search Posts"/>
-        </Form>
+- Serach Bar - https://uiverse.io/chethan025/tasty-gecko-98

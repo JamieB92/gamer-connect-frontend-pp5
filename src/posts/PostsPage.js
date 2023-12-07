@@ -15,11 +15,13 @@ function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
+  
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/?${filter}`);
+        const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
         setPosts(data);
         setHasLoaded(true);
       } catch (err) {
@@ -28,37 +30,64 @@ function PostsPage({ message, filter = "" }) {
     };
 
     setHasLoaded(false);
-    fetchPosts();
-  }, [filter, pathname]);
+    const timer = setTimeout(() => {
+      fetchPosts();
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+}, [filter, query, pathname]);
 
   return (
-    <Row className="h-100">
-      <Col>
-        <p>Popular profiles for desktop</p>
-      </Col>
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Search</p>
-        {hasLoaded ? (
-          <>
-            {posts.results.length ? (
-              posts.results.map((post) => (
-                <Post key={post.id} {...post} setPosts={setPosts} />
-              ))
-            ) : (
-              <Container className={styles.noResultsImage}>
-                <img src={NoResults} alt="No Results to display" className={styles.noResultsImage}/>
-                <Asset message={message}>
-                </Asset>
-              </Container>
-            )}
-          </>
-        ) : (
-          <Container className={appStyles.Content}>
-            <Asset spinner />
-          </Container>
-        )}
-      </Col>
-    </Row>
+    <div>
+      <Row className="h-100">
+        <Col>
+          <form
+            className={styles.searchForm}
+            onSubmit={(event) => event.preventDefault()}
+          >
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              type="text"
+              className={styles.searchBar}
+              placeholder="Search Posts"
+            />
+          </form>
+        </Col>
+        <Col>
+            <p>Profiles</p>
+        </Col>
+
+      </Row>
+      <Row className="h-100">
+        <Col className="py-2 p-0 p-lg-2" lg={8}>
+          {hasLoaded ? (
+            <>
+              {posts.results.length ? (
+                posts.results.map((post) => (
+                  <Post key={post.id} {...post} setPosts={setPosts} />
+                ))
+              ) : (
+                <Container className={styles.noResultsImage}>
+                  <img
+                    src={NoResults}
+                    alt="No Results to display"
+                    className={styles.noResultsImage}
+                  />
+                  <Asset message={message}></Asset>
+                </Container>
+              )}
+            </>
+          ) : (
+            <Container className={appStyles.Content}>
+              <Asset spinner />
+            </Container>
+          )}
+        </Col>
+      </Row>
+    </div>
   );
 }
 

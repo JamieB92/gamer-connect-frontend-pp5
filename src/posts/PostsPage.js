@@ -9,6 +9,8 @@ import Asset from "../components/Assests"
 import { useLocation } from "react-router";
 import { axiosReq } from "../api/axiosDefaults";
 import NoResults from "../assets/no-results.jpg"
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../utils/utils";
 
 
 function PostsPage({ message, filter = "" }) {
@@ -66,9 +68,17 @@ function PostsPage({ message, filter = "" }) {
           {hasLoaded ? (
             <>
               {posts.results.length ? (
-                posts.results.map((post) => (
-                  <Post key={post.id} {...post} setPosts={setPosts} />
-                ))
+                <InfiniteScroll 
+                  children={
+                    posts.results.map((post) => (
+                      <Post key={post.id} {...post} setPosts={setPosts} />
+                    ))
+                  }
+                  dataLength={posts.results.length}
+                  loader={< Asset spinner />}
+                  hasMore={!!posts.next}
+                  next={() => fetchMoreData(posts, setPosts)}
+                />
               ) : (
                 <Container className={styles.noResultsImage}>
                   <img

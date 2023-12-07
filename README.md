@@ -193,10 +193,92 @@ Users can easily find posts and user profiles on GamerConnect by using relevant 
 ![color-palete](https://github.com/JamieB92/Gamer-Connect-Frontend-PP4/assets/117354147/10f0a07e-09cf-464a-9e78-291c79091c3d)
 
 
- # Deployment
-Here you can find the instructions to recreate the deployment of the project
+ # Setup and Deployment
+Here you can find the instructions to recreate the projects
 
-## Backend Deployment
+## Frontend Setup:
+
+### Github
+- In the top right of the page click the plus symbol
+- Click New Repository
+- Name the repository using lowercase to allow React to create an app
+- Click Create
+
+### Gitpod (Please use Chrome or Firefox)
+- open a new tab in your browser and go to your browsers extensions store
+- Search for Gitpod
+- Install Gitpod extension
+- Go back to your newly created repo
+- Click the Green Gitpod Open button
+- Click Continue with Github 
+- Gitpod will now create a workspace 
+
+### Heroku Setup: 
+
+- Navigate to [heroku](https://id.heroku.com/login) and create an account
+- Click the "New" button.
+- Select "Create New App."
+- Provide an app name.
+- Choose a region and click "Create App."
+- Select region and click create app
+
+### Setting Up React Using CI template:
+
+- Enter the following in your workspaces terminal (This may take a couple of minuetes).
+
+        npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm
+
+- Enter npm install in the terminal
+- Then enter the following to fix [issue](https://github.com/JamieB92/gamer-connect-frontend-pp5/issues/1) with CI template:
+
+        npm i react-scripts@latest
+
+- Enter in ther terminal
+
+        npm start
+
+- You should see the react logo now open in the local server
+
+
+### Connecting FrontEnd with the Backend in Heroku:
+- Go to Heroku
+- Load your front end app (gamer-connect)
+- Open App 
+- Copy URL
+- Now load your API project (gamer-connect-api)
+- Go to settings 
+- Reveal config vars
+- create a new Var and paste the URL in the value: 
+
+        Key - CLIENT_ORGIN  
+        Value - {{front_end_project_url}}
+
+- Now go back to Gitpod
+- Go to your development server and copy URL
+- Go back to Heroku
+- Go to settings 
+- Reveal config vars
+- create a new Var and paste the URL in the value: 
+
+        Key - CLIENT_ORGIN_DEV 
+        Value - {{front_end_dev_server_url}}
+
+Note: Gitpod will change the dev server URL every so often so update when needed
+
+### Axios 
+
+- Run the following in the terminal:
+
+        npm install axios
+
+- Create a folder named api in the src folder
+- create a file named axiosDefaults.js
+- Setup your api settings, when setting the base URL make sure to use your Heroku backend apps URL.
+- import axios in to APP.js
+
+
+
+## Backend Setup
 
 ### Github
 - In the top right of the page click the plus symbol
@@ -214,12 +296,26 @@ Here you can find the instructions to recreate the deployment of the project
 - Click Continue with Github 
 - Gitpod will now create a workspace 
 
-### Django Setup
+### Heroku Setup: 
+
+- Navigate to [heroku](https://id.heroku.com/login) and create an account
+- Click the "New" button.
+- Select "Create New App."
+- Provide an app name.
+- Choose a region and click "Create App."
+- Select region and click create app
+
+### Django and Django Rest Framework Setup
 - In your IDE open a new terminal
-- Enter enter in the terminal pip3 install 'django<4'
+- Enter in the terminal pip3 install 'django<4'
 - Enter in the terminal django-admin startproject {{project_name}} .
 - Enter in the terminal to create an App with - python manage.py startapp {{app_name}}
 - Add the new app to the allowed apps in the settings.py file.
+- Enter in the terminal - pip install djangorestframework
+- Now go to settings.py and add 'rest_framework' to installed apps.
+- Enter in the terminal pip install django_filter
+- Now go to settings.py and 'django_filers' to installed apps.
+- pip freeze > requirements.txt
 
 
 ### Cloudinary and Pillow
@@ -228,6 +324,7 @@ Here you can find the instructions to recreate the deployment of the project
 - Click dashboard
 - Copy your cloudinary API Environment variable
 - Install Cloudinary in the terminal with - pip install django-cloudinary-storage
+- pip install django-cloudinary-storage[video]
 - Install Pillow in the terminal with - pip install Pillow
 - Now go to settings.py in your project 
 - In installed apps add 'cloudinary_storage' above 'django.contrib.staticfiles' and 'cloudinary' below.
@@ -245,6 +342,231 @@ Here you can find the instructions to recreate the deployment of the project
         }
         MEDIA_URL = '/media/'
         DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+### dj_rest_auth
+- run the following in the terminal - pip3 install dj-rest-auth==2.1.9
+- Add the following in INSTALLED_APPS in settings.py:
+
+        'rest_framework.authtoken',
+        'dj_rest_auth',
+
+- Add the following in the main app (gamer_connect_api) urls.py: 
+
+        path('dj-rest-auth/', include('dj_rest_auth.urls')),
+
+- Now migrate the db with  python manage.py migrate
+- run the following in the terminal - pip freeze > requirements.txt
+
+### All Auth
+- run the following in the terminal -  pip install 'dj-rest-auth-[with_social]'
+- got to INSTALLED_APPS and add the following:
+
+        'django.contrib.sites',
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        'dj_rest_auth.registration',
+
+- Underneath INSTALLED_APPS add:
+
+        SITE_ID = 1
+
+- Add the following in the main app (gamer_connect_api) urls.py:     
+
+        path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+- run pip freeze > requirements.txt 
+
+### JWT Tokens
+- Run the following in the terminal - pip install djangorestframework-simplejwt
+- add DEV to env.py
+- Add the following in settings.py under BASE_DIR :
+
+        REST_FRAMEWORK = {
+            'DEFAULT_AUTHENTICATION_CLASSES': [(
+                'rest_framework.authentication.SessionAuthentication'
+                if 'DEV' in os.environ
+                else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+            )]
+        }
+
+- Again in setting.py add the following under REST_FRAMEWORK : 
+
+        REST_USE_JWT = True
+        JWT_AUTH_SECURE = True
+        JWT_AUTH_COOKIE = 'my-app-auth'
+        JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+        
+        REST_AUTH_SERIALIZERS = {
+            'USER_DETAILS_SERIALIZER': 'gamer_connect_api.serializers.CurrentUserSerializer'
+        }
+- Create serializers.py and create dj_rest_auth
+- python manage.py migrate
+- run pip freeze > requirements.txt 
+
+## Backend Deployment 
+
+### ElephantSQL(Database):
+- Navigate to https://www.elephantsql.com/
+- Click Login/Creat a account.
+- Click "Create New Instance".
+- Create a name for the instance.
+- Select Tiny Turtle.
+- Leave Tags empty and click "Select Region".
+- Select your region.
+- Click Review in the bottom right corner.
+- Click Create instance.
+- Click on your newly created instance.
+- Copy the URL of the instance.
+- Go to Heroku 
+- Click on settings and reveal config vars
+- set the key as DATABASE_URL and paste in the url in the value :
+
+       [DATABASE_URL]   [postgres://xxxxxxxxxxxxxxxxxxxxx]
+
+- Now go back to your IDE 
+- Run pip3 install dj_database_url==0.5.0 psycopg2 in the terminal
+- go to settings.py and import dj_database_url underneath the import for os
+
+        import os
+        import dj_database_url
+- Still in settings.py update the DATABASES section with the following: 
+
+        if 'DEV' in os.environ:
+            DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.sqlite3',
+                    'NAME': BASE_DIR / 'db.sqlite3',
+                }
+            }
+        else:
+            DATABASES = {
+                default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+            }
+
+- add you db url to env.py :
+
+        os.environ['DATABASE_URL'] = "<your PostgreSQL URL here>"
+
+- Temporarly comment out DEV so that the external db can connect to your IDE
+- Go back to settings.py and add a print satement at the bottom of the database if else statement:
+
+        
+        if 'DEV' in os.environ:
+            DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.sqlite3',
+                    'NAME': BASE_DIR / 'db.sqlite3',
+                }
+            }
+        else:
+            DATABASES = {
+                default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+            }
+            print("connected")
+
+- -–dry-run your makemigrations with following in the terminal:
+
+    python3 manage.py makemigrations --dry-run
+
+- if succesful connection is made you should see connected in the terminal
+- Remove print statement
+- Run python3 manage.py migrate
+- Create yourself a super user for the database by running - python3 manage.py createsuperuser
+- Follow the steps to create your superuser username and password
+- Confirm this has been added by going back to Elephantsql
+- click on your instance 
+- select browser in the left navigation
+- Click the table queries and select auth_user
+- When you click execute you should now see your new superuser
+
+### IDE Setup For Deployment: 
+
+- In the terminal of your IDE run - pip3 install gunicorn django-cors-headers
+- Run in the terminal - pip freeze --local > requirements.txt
+- Create a Profile in the top level of the project (Needed for Heroku)
+- Add the following to the Procfile: 
+
+        release: python manage.py makemigrations && python manage.py migrate
+        web: gunicorn gamer_connect_api.wsgi
+
+- Go to settings.py and take your Heroku app's URL and add to ALLOWED_HOSTS
+
+        ALLOWED_HOSTS = ['localhost', '{{your_app_name}}.herokuapp.com']
+- Add corsheaders to INSTALLED_APPS underneath dj_rest_auth.registration
+
+        INSTALLED_APPS = [
+
+            'dj_rest_auth.registration',
+            'corsheaders',
+        ]
+
+- Add corsheaders middleware to the TOP of the MIDDLEWARE
+
+            SITE_ID = 1
+            MIDDLEWARE = [
+                'corsheaders.middleware.CorsMiddleware',
+                ...
+            ]
+- Under the MIDDLEWARE list, set the ALLOWED_ORIGINS for the network requests made to the server with the following code:
+
+            if 'CLIENT_ORIGIN' in os.environ:
+                CORS_ALLOWED_ORIGINS = [
+                    os.environ.get('CLIENT_ORIGIN')
+                ]
+            else:
+                CORS_ALLOWED_ORIGIN_REGEXES = [
+                    r"^https://.*\.gitpod\.io$",
+
+- Enable sending cookies in cross-origin requests to allow users to use authentication.
+
+            else:
+                CORS_ALLOWED_ORIGIN_REGEXES = [
+                    r"^https://.*\.gitpod\.io$",
+                ]
+
+            CORS_ALLOW_CREDENTIALS = True
+
+
+- Set the JWT_AUTH_SAMESITE attribute to 'None' to allow the front end and the API to talk between different platforms
+            
+            JWT_AUTH_COOKIE = 'my-app-auth'
+            JWT_AUTH_REFRESH_COOKE = 'my-refresh-token'
+            JWT_AUTH_SAMESITE = 'None'
+
+- Remove the default SECRET_KEY and replace with the following to use env.py
+
+            SECRET_KEY = os.getenv('SECRET_KEY')
+    
+- Create a NEW value for your SECRET_KEY environment variable and add it to env.py file:
+
+            os.environ.setdefault("SECRET_KEY", "YourNewKey")
+
+
+- Set DEBUG to be True only if the DEV environment variable exists.
+
+            DEBUG = 'DEV' in os.environ
+
+- Comment DEV back in env.py
+
+- Run - pip freeze --local > requirements.txt
+- Add, Commit & Push to Github
+
+
+### Heroku Deployment
+
+- Go to the "Settings" tab and click "Reveal Config Vars."
+- Add the following configuration variables:
+- SECRET_KEY: (Your secret key)
+- DATABASE_URL: (You should already have this if you created an elephantSQL PostGresdb)
+- CLOUNDINARY_URL: (Cloudinary API URL)
+- DISABLE_COLLECTSTATIC: 1
+Click the "Deploy" tab.
+Scroll down to "Connect to GitHub" and sign in/authorize when prompted.
+In the search box, locate the repository you wish to deploy and click "Connect."
+Scroll down to "Manual Deploy" and select the main branch.
+Click "Deploy."
+The app should now be successfully deployed.
 
 
 ## Frontend Setup:
@@ -327,6 +649,11 @@ Note: Gitpod will change the dev server URL every so often so update when needed
 - Setup your api settings, when setting the base URL make sure to use your Heroku backend apps URL.
 - import axios in to APP.js
 
+# Bugs and Testing 
+
+You can find all the bugs and testing in the following files:
+
+GamerConnect [Backend](https://github.com/JamieB92/Gamer-Connect-Backend-PP5/blob/main/bugs_and_testing_backend.md)
 
 ## Credits
 

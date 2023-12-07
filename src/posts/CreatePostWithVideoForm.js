@@ -1,8 +1,7 @@
 import React, { useRef ,useState } from "react";
 import {Form, Button, Row, Col, Container, Alert} from "react-bootstrap";
-
+import ReactPlayer from 'react-player'
 import Upload from "../assets/upload.png"
-
 import styles from "../styles/CreatePostEditForm.module.css";
 import appStyles from "../App.module.css";
 import btnStyles from "../styles/Button.module.css";
@@ -110,7 +109,6 @@ function CreatePostWithVideoForm() {
   );
 
   return (
-
     <Form onSubmit={handleSubmit}>
       <Row>
         <Col>
@@ -120,11 +118,12 @@ function CreatePostWithVideoForm() {
             <Form.Group className="text-center">
               {upload_clip ? (
                 <>
-                  <div>
-                    <video>
-                      <source src={upload_clip} type="video/mp4" />
-                    </video>
-                  </div>
+                  <ReactPlayer
+                    url={upload_clip}
+                    controls="True"
+                    width="700"
+                    height="500"
+                  />
                   <Form.Label
                     className={btnStyles.btnSmall}
                     htmlFor="video-upload"

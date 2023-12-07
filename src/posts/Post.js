@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactPlayer from 'react-player'
 import styles from "../styles/Post.module.css"
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { Card, Media, OverlayTrigger, Tooltip} from 'react-bootstrap';
@@ -65,7 +66,7 @@ const Post = (props) => {
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
             <UserAvatar src={profile_avatar} height={55} />
-             <span className={styles.ownerName}>{owner}</span> 
+            <span className={styles.ownerName}>{owner}</span>
           </Link>
           <div className="d-flex align-items-center">
             <span>{edited_on}</span>
@@ -77,17 +78,20 @@ const Post = (props) => {
         {upload_image ? (
           <Card.Img src={upload_image} alt={post_header} />
         ) : upload_clip ? (
-            <div>
-              <video width="700" height="500" controls>
-                <source src={upload_clip} type="video/mp4" />
-              </video>
-            </div>      
+          <ReactPlayer
+            url={upload_clip}
+            controls="True"
+            width="700"
+            height="500"
+          />
         ) : (
           <></>
         )}
-      </Link> 
+      </Link>
       <Card.Body>
-        {post_header && <Card.Title className="text-center">{post_header}</Card.Title>}
+        {post_header && (
+          <Card.Title className="text-center">{post_header}</Card.Title>
+        )}
         {caption && <Card.Text>{caption}</Card.Text>}
         <div className={styles.PostBar}>
           {is_owner ? (

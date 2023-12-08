@@ -561,12 +561,12 @@ Note: Gitpod will change the dev server URL every so often so update when needed
 - DATABASE_URL: (You should already have this if you created an elephantSQL PostGresdb)
 - CLOUNDINARY_URL: (Cloudinary API URL)
 - DISABLE_COLLECTSTATIC: 1
-Click the "Deploy" tab.
-Scroll down to "Connect to GitHub" and sign in/authorize when prompted.
-In the search box, locate the repository you wish to deploy and click "Connect."
-Scroll down to "Manual Deploy" and select the main branch.
-Click "Deploy."
-The app should now be successfully deployed.
+- Click the "Deploy" tab.
+- Scroll down to "Connect to GitHub" and sign in/authorize when prompted.
+- In the search box, locate the repository you wish to deploy and click "Connect."
+- Scroll down to "Manual Deploy" and select the main branch.
+- Click "Deploy."
+- The app should now be successfully deployed.
 
 
 

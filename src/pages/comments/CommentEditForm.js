@@ -8,33 +8,33 @@ import styles from "../../styles/CommentCreateEditForm.module.css";
 function CommentEditForm(props) {
   const { id, comment, setShowEditForm, setComments } = props;
 
-  const [formContent, setFormContent] = useState(comment);
+  const [formComment, setFormComment] = useState(comment);
 
   const handleChange = (event) => {
-    setFormContent(event.target.value);
+    setFormComment(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axiosRes.put(`/post_comments/${id}/`, {
-        content: formContent.trim(),
+      await axiosRes.put(`/post_comments/${id}`, {
+        comment: formComment.trim(),
       });
       setComments((prevComments) => ({
         ...prevComments,
-        results: prevComments.results.map((comment) => {
-          return comment.id === id
+        results: prevComments.results.map((comments) => {
+          return comments.id === id
             ? {
-                ...comment,
-                content: formContent.trim(),
+                ...comments,
+                comment: formComment.trim(),
                 updated_at: "now",
               }
-            : comment;
+            : comments;
         }),
       }));
       setShowEditForm(false);
     } catch (err) {
-      // console.log(err);
+        console.log(err)
     }
   };
 
@@ -44,7 +44,7 @@ function CommentEditForm(props) {
         <Form.Control
           className={styles.Form}
           as="textarea"
-          value={formContent}
+          value={formComment}
           onChange={handleChange}
           rows={2}
         />

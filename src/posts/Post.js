@@ -102,7 +102,7 @@ const Post = (props) => {
         ) : upload_clip ? (
           <ReactPlayer
             url={upload_clip}
-            controls="True"
+            controls={true}
             width="700"
             height="500"
           />

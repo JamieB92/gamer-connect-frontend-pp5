@@ -120,7 +120,7 @@ function CreatePostWithVideoForm() {
                 <>
                   <ReactPlayer
                     url={upload_clip}
-                    controls="True"
+                    controls={true}
                     width="700"
                     height="500"
                   />

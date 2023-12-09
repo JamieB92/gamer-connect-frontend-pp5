@@ -184,8 +184,10 @@ As a GamerConnect user, I aim to search for posts and user profiles using keywor
 
 #### Placeholder image
 
-
 Users can easily find posts and user profiles on GamerConnect by using relevant keywords. The search function accurately retrieves content aligned with the entered keywords, ensuring a simple and smooth experience through the user-friendly interface.
+
+
+###
 
 ## Design
 

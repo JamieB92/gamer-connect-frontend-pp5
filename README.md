@@ -69,6 +69,9 @@ As a GamerConnect user, I want a straightforward way to revisit posts I've liked
 ### Post Editing Privileges: 
 As a post owner on GamerConnect, I aim to have control over the editing of my post title and description to ensure accuracy and updates.
 
+### Delete a Post Privilige:
+As a GamerConnect user, I want to delete my posts this will allow me to manage my content.
+
 ### Active Commenting: 
 As a GamerConnect user, I intend to contribute to post discussions by adding comments, allowing me to share thoughts and engage with fellow gamers.
 
@@ -88,6 +91,9 @@ As a GamerConnect user, I want to be able to follow and unfollow other gamers.
 
 ### Profile Customization: 
 As a GamerConnect user, when logged in, I want to personalize my gaming identity by changing my profile picture and updating my bio.
+
+### Display GamerConnects most popular profiles
+As a GamerConnect user, I want to effortlessly find and connect with popular profiles in the gaming community.
 
 ## Epic 5 - Developer 
 
@@ -187,7 +193,44 @@ As a GamerConnect user, I aim to search for posts and user profiles using keywor
 Users can easily find posts and user profiles on GamerConnect by using relevant keywords. The search function accurately retrieves content aligned with the entered keywords, ensuring a simple and smooth experience through the user-friendly interface.
 
 
-###
+### Post Editing Privileges
+
+### User Story: 
+
+As a GamerConnect post owner, I want to be able to edit my post title and description for accuracy and updates.
+
+#### Placeholder
+
+Users can easily change their posts by clicking on the options icon on the post and selecting edit, making it simple to keep their content up-to-date. This user-friendly feature ensures quick and accurate updates to titles and descriptions, making the experience dynamic. By allowing easy edits, this encourages users to take charge of their content, adding their own touch and making the community stronger.
+
+### Delete a Post Privilige
+
+As a GamerConnect user, I want to delete my posts this will allow me to manage my content.
+
+#### Placeholder
+
+Post owners can easily delete their posts with a designated icon. The process is user-friendly and accessible, allowing post owners to manage their content effortlessly.
+
+### Active Commenting
+
+#### User Story
+
+As a GamerConnect user, I want to join post conversations by commenting, sharing thoughts, and interacting with fellow gamers.
+
+#### Placeholder
+
+On GamerConnect, users can easily add comments to posts. The platform accurately shows user comments in post discussions. Commenting is simple and user-friendly, encouraging gamers to engage with each other.
+
+### Comment Control
+
+#### User Story
+
+As a comment owner, I want to be able to edit and delete my comments, giving me control over the content in the app.
+
+#### Placeholder
+
+Users who own comments can easily modify their contributions using simple and user-friendly options. The platform seamlessly integrates editing features, allowing individuals to quickly adjust their posts for accuracy or clarity without any hassle. 
+The delete function is seamlessly integrated, providing an efficient way for comment owners to swiftly remove their content. These straightforward processes empowers users to keep their comments relevant and aligned with their intentions.
 
 ## Design
 

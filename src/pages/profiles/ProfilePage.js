@@ -71,6 +71,7 @@ function ProfilePage() {
         </Col>
         <Col lg={6}>
           <h3 className="m-2">{profile?.owner}</h3>
+          <h5 className="p-3">{profile?.name}</h5>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
               <div>{profile?.posts_count}</div>
@@ -106,6 +107,9 @@ function ProfilePage() {
             ))}
         </Col>
         {profile?.bio && <Col className="p-3">{profile.bio}</Col>}
+      </Row>
+      <Row>
+        <Col className="p-3">{profile?.platform}</Col>
       </Row>
     </>
   );

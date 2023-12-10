@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -27,10 +26,13 @@ const ProfileEditForm = () => {
 
   const [profileData, setProfileData] = useState({
     name: "",
-    content: "",
-    image: "",
+    bio: "",
+    profile_avatar: "",
+    platform: "",
+    platform_username: "",
+
   });
-  const { name, content, image } = profileData;
+  const {name, bio, profile_avatar, platform, platform_username } = profileData;
 
   const [errors, setErrors] = useState({});
 
@@ -38,9 +40,9 @@ const ProfileEditForm = () => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
-          const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, content, image } = data;
-          setProfileData({ name, content, image });
+          const { data } = await axiosReq.get(`/profiles/${id}`);
+          const { name, bio, profile_avatar, platform, platform_username } = data;
+          setProfileData({ name, bio, profile_avatar, platform, platform_username });
         } catch (err) {
           console.log(err);
           history.push("/");
@@ -64,17 +66,19 @@ const ProfileEditForm = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("content", content);
+    formData.append("bio", bio);
+    formData.append("Platform", platform);
+    formData.append("Platform_username", platform_username);
 
     if (imageFile?.current?.files[0]) {
-      formData.append("image", imageFile?.current?.files[0]);
+      formData.append("profile_avatar", imageFile?.current?.files[0]);
     }
 
     try {
-      const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
+      const { data } = await axiosReq.put(`/profiles/${id}`, formData);
       setCurrentUser((currentUser) => ({
         ...currentUser,
-        profile_image: data.image,
+        profile_avatar: data.profile_avatar,
       }));
       history.goBack();
     } catch (err) {
@@ -86,30 +90,68 @@ const ProfileEditForm = () => {
   const textFields = (
     <>
       <Form.Group>
-        <Form.Label>Bio</Form.Label>
+        <Form.Label>Name</Form.Label>
         <Form.Control
           as="textarea"
-          value={content}
+          value={name}
           onChange={handleChange}
-          name="content"
-          rows={7}
+          name="name"
+          rows={1}
         />
       </Form.Group>
 
-      {errors?.content?.map((message, idx) => (
+      {errors?.name?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
       ))}
-      <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        onClick={() => history.goBack()}
-      >
+
+      <Form.Group>
+        <Form.Label>Bio</Form.Label>
+        <Form.Control
+          as="textarea"
+          value={bio}
+          onChange={handleChange}
+          name="bio"
+          rows={7}
+        />
+      </Form.Group>
+
+      {errors?.bio?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Form.Group>
+        <Form.Label>Platform</Form.Label>
+        <Form.Control
+          as="select"
+          value={platform}
+          onChange={handleChange}
+          name="platform"
+          rows={7}
+        >
+        <option>Xbox</option>
+        <option>Playstation</option>
+        <option>Steam</option>
+        <option>Nintendo Switch</option>
+        <option>Discord</option>
+        </Form.Control>
+      </Form.Group>
+
+      {errors?.platform?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <button className={btnStyles.btnXsSmall} onClick={() => history.goBack()}>
         cancel
-      </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      </button>
+      <button className={btnStyles.btnXsSmall} type="submit">
         save
-      </Button>
+      </button>
     </>
   );
 
@@ -119,22 +161,22 @@ const ProfileEditForm = () => {
         <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
           <Container className={appStyles.Content}>
             <Form.Group>
-              {image && (
+              {profile_avatar && (
                 <figure>
-                  <Image src={image} fluid />
+                  <Image src={profile_avatar} fluid />
                 </figure>
               )}
-              {errors?.image?.map((message, idx) => (
+              {errors?.profile_avatar?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
                   {message}
                 </Alert>
               ))}
               <div>
                 <Form.Label
-                  className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
+                  className={btnStyles.btnXsSmall}
                   htmlFor="image-upload"
                 >
-                  Change the image
+                  Change your avatar
                 </Form.Label>
               </div>
               <Form.File
@@ -145,7 +187,7 @@ const ProfileEditForm = () => {
                   if (e.target.files.length) {
                     setProfileData({
                       ...profileData,
-                      image: URL.createObjectURL(e.target.files[0]),
+                      profile_avatar: URL.createObjectURL(e.target.files[0]),
                     });
                   }
                 }}

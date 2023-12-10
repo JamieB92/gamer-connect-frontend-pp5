@@ -66,7 +66,17 @@ function NavBar() {
     >
     <i className="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
     </NavLink>
+
+    <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/contact/create"
+      >
+        <i className="fa-solid fa-file-signature" />
+        Contact Us
+      </NavLink>
   </>
+  
   const loggedOutIcons = (
     <>
       <NavLink

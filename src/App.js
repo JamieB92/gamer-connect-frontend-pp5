@@ -14,6 +14,7 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
+import ContactForm from "./pages/contact/ContactForm";
 
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
+          <Route exact path="/contact/create/"render={() => <ContactForm />}/>
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

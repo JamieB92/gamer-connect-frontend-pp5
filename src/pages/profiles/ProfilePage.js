@@ -109,7 +109,7 @@ function ProfilePage() {
         {profile?.bio && <Col className="p-3">{profile.bio}</Col>}
       </Row>
       <Row>
-        <Col className="p-3">{profile?.platform}</Col>
+        
       </Row>
     </>
   );

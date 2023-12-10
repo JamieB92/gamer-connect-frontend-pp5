@@ -132,15 +132,31 @@ const ProfileEditForm = () => {
           name="platform"
           rows={7}
         >
-        <option>Xbox</option>
-        <option>Playstation</option>
-        <option>Steam</option>
-        <option>Nintendo Switch</option>
-        <option>Discord</option>
+        <option value="xbox">Xbox</option>
+        <option value="playstation">Playstation</option>
+        <option value="steam">Steam</option>
+        <option value="nswitch">Nintendo Switch</option>
+        <option value="discord">Discord</option>
         </Form.Control>
       </Form.Group>
 
       {errors?.platform?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Form.Group>
+        <Form.Label>Platform Username</Form.Label>
+        <Form.Control
+          as="textarea"
+          value={platform_username}
+          onChange={handleChange}
+          name="platform_username"
+          rows={1}
+        />
+      </Form.Group>
+      {errors?.platform_username?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>

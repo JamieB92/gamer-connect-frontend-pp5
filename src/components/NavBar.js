@@ -1,19 +1,21 @@
-import React from 'react'
-import { Container, Navbar, Nav } from 'react-bootstrap';
-import styles from "../styles/NavBar.module.css"
-import logo from "../assets/logo.png"
+import React from "react";
+import { Container, Navbar, Nav } from "react-bootstrap";
+import styles from "../styles/NavBar.module.css";
+import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
-import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
-import UserAvatar from './UserAvatar';
-import axios from 'axios';
-import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
+import UserAvatar from "./UserAvatar";
+import axios from "axios";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 function NavBar() {
-
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-  const {expanded, setExpanded, ref} = useClickOutsideToggle();
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const handleSignOut = async () => {
     try {
@@ -26,57 +28,58 @@ function NavBar() {
 
   const addPostIcon = (
     <NavLink
-    className={styles.NavLink}
-    activeClassName={styles.Active}
-    to="/posts/create"
-  >
-    <i class="fa-solid fa-plus"></i> Create
-  </NavLink>
-  )
-  const loggedInIcons = <>
-    <NavLink
-    className={styles.NavLink}
-    activeClassName={styles.Active}
-    to="/feed"
-  >
-    <i class="fas fa-stream"></i> Feed
-  </NavLink>
-
-  <NavLink
-    className={styles.NavLink}
-    activeClassName={styles.Active}
-    to="/liked"
-    onClick={() => {}}
-  >
-    <i class="fas fa-heart"></i> Liked
-  </NavLink>
-
-  <NavLink
-    className={styles.NavLink}
-    activeClassName={styles.Active}
-    to={`/profiles/${currentUser?.profile_id}`}
-  >
-    <UserAvatar src={currentUser?.profile_avatar} text=" Profile" height={38} />
-  </NavLink>
-
-  <NavLink
       className={styles.NavLink}
-      to="/"
-      onClick={handleSignOut}
+      activeClassName={styles.Active}
+      to="/posts/create"
     >
-    <i className="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+      <i class="fa-solid fa-plus"></i> Create
     </NavLink>
+  );
+  const loggedInIcons = (
+    <>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/feed"
+      >
+        <i class="fas fa-stream"></i> Feed
+      </NavLink>
 
-    <NavLink
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/liked"
+        onClick={() => {}}
+      >
+        <i class="fas fa-heart"></i> Liked
+      </NavLink>
+
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+        <UserAvatar
+          src={currentUser?.profile_avatar}
+          text=" Profile"
+          height={38}
+        />
+      </NavLink>
+
+      <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/contact/create"
       >
-        <i className="fa-solid fa-file-signature" />
+        <i className="fa-brands fa-hire-a-helper"></i>
         Contact Us
       </NavLink>
-  </>
-  
+      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
+        <i className="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+      </NavLink>
+    </>
+  );
+
   const loggedOutIcons = (
     <>
       <NavLink
@@ -97,33 +100,41 @@ function NavBar() {
   );
 
   return (
-    <Navbar expanded={expanded} expand="lg" fixed="top" className={styles.NavBar}>
-      <Container> 
+    <Navbar
+      expanded={expanded}
+      expand="lg"
+      fixed="top"
+      className={styles.NavBar}
+    >
+      <Container>
         <NavLink to="/">
-          <Navbar.Brand><img src={logo} alt="Logo" height={50}/> GamerConnect</Navbar.Brand>
+          <Navbar.Brand>
+            <img src={logo} alt="Logo" height={50} /> GamerConnect
+          </Navbar.Brand>
         </NavLink>
-        
+
         <Navbar.Toggle
           ref={ref}
-          onClick={() => setExpanded(!expanded)} 
-          aria-controls="basic-navbar-nav" />
+          onClick={() => setExpanded(!expanded)}
+          aria-controls="basic-navbar-nav"
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-right">
-              <NavLink 
+            <NavLink
               exact
               className={styles.NavLink}
               activeClassName={styles.Active}
-              to="/">
-                <i class="fa-solid fa-house-chimney"></i> Home
-              </NavLink>
-              {currentUser && addPostIcon}
-              {currentUser ? loggedInIcons : loggedOutIcons}
+              to="/"
+            >
+              <i class="fa-solid fa-house-chimney"></i> Home
+            </NavLink>
+            {currentUser && addPostIcon}
+            {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
-      </Navbar.Collapse>
-      </Container> 
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
   );
 }
 
-export default NavBar
-
+export default NavBar;

@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from "react";
+
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+
 import Asset from "../../components/Assests";
+import PostStyles from "../../styles/PostsPage.module.css";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
-import PostsPageStyles from "../../styles/PostsPage.module.css"
 import btnStyles from "../../styles/Button.module.css";
+
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useSetProfileData, useProfileData} from "../../contexts/ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
+import {
+  useProfileData,
+  useSetProfileData,
+} from "../../contexts/ProfileDataContext";
+import { Image } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Post from "../../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.jpg";
-
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -57,9 +62,9 @@ function ProfilePage() {
     <>
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
-          <Image 
+          <Image
             className={styles.ProfileAvatar}
-            roundedCircle 
+            roundedCircle
             src={profile?.profile_avatar}
           />
         </Col>
@@ -67,52 +72,38 @@ function ProfilePage() {
           <h3 className="m-2">{profile?.owner}</h3>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
-              <div>
-                {profile?.posts_count}
-              </div>
-              <div>
-                <p>Posts</p>
-              </div>
+              <div>{profile?.posts_count}</div>
+              <div>posts</div>
             </Col>
             <Col xs={3} className="my-2">
-              <div>
-                {profile?.followers_count}
-              </div>
-              <div>
-                <p>Followers</p>
-              </div>
+              <div>{profile?.followers_count}</div>
+              <div>followers</div>
             </Col>
             <Col xs={3} className="my-2">
-              <div>
-                {profile?.following_count}
-              </div>
-              <div>
-                <p>Following</p>
-              </div>
+              <div>{profile?.following_count}</div>
+              <div>following</div>
             </Col>
           </Row>
         </Col>
         <Col lg={3} className="text-lg-right">
-        {currentUser &&
+          {currentUser &&
             !is_owner &&
             (profile?.following_id ? (
-              <Button
+              <button
                 className={btnStyles.btnXsSmall}
                 onClick={() => handleUnfollow(profile)}
               >
                 unfollow
-              </Button>
+              </button>
             ) : (
-              <Button
+              <button
                 className={btnStyles.btnXsSmall}
                 onClick={() => handleFollow(profile)}
               >
                 follow
-              </Button>
+              </button>
             ))}
         </Col>
-        {profile?.platform && <Col className="p-3">{profile.platform}</Col>}
-        {profile?.platform_username && <Col className="p-3">{profile.platform_username}</Col>}
         {profile?.bio && <Col className="p-3">{profile.bio}</Col>}
       </Row>
     </>
@@ -134,18 +125,16 @@ function ProfilePage() {
           next={() => fetchMoreData(profilePosts, setProfilePosts)}
         />
       ) : (
-        <Container className={PostsPageStyles.noResultsContainer}>
-        <img
-          src={NoResults}
-          alt="No Results to display"
-          className={PostsPageStyles.noResultsImage}
+        <Container >
+          <img
+            src={NoResults}
+            alt="No Results to display"
+            className={PostStyles.noResultsImage}
+          />
+        <Asset
+          message={`No results found, ${profile?.owner} hasn't posted yet.`}
         />
-        <Asset message={`${profile?.owner} hasn't posted yet.`}></Asset>
-      </Container>
-
-            
-
-
+        </Container>
       )}
     </>
   );
@@ -163,7 +152,7 @@ function ProfilePage() {
           ) : (
             <Asset spinner />
           )}
-        </Container>
+        </ Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />
@@ -172,4 +161,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage ;
+export default ProfilePage;

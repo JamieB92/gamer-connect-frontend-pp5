@@ -1,0 +1,6 @@
+.ProfileAvatar {
+    object-fit: cover;
+    height: 120px;
+    width: 120px;
+    margin: 4px;
+}

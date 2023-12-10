@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Asset from "../../components/Assests";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
+import PostsPageStyles from "../../styles/PostsPage.module.css"
 import btnStyles from "../../styles/Button.module.css";
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -12,32 +13,43 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useSetProfileData, useProfileData} from "../../contexts/ProfileDataContext";
 import { Button, Image } from "react-bootstrap";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Post from "../../posts/Post";
+import { fetchMoreData } from "../../utils/utils";
+import NoResults from "../../assets/no-results.jpg";
 
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [profilePosts, setProfilePosts] = useState({ results: [] });
+
   const currentUser = useCurrentUser();
-  const {id} = useParams();
+  const { id } = useParams();
+
   const setProfileData = useSetProfileData();
-  const {pageProfile} = useProfileData();
+  const { pageProfile } = useProfileData();
+
   const [profile] = pageProfile.results;
-  const is_owner = currentUser?.username === profile?.owner
+  const is_owner = currentUser?.username === profile?.owner;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{data: pageProfile}] = await Promise.all([
-          axiosReq.get(`/profiles/${id}`)
-        ])
-        setProfileData(prevState => ({
+        const [{ data: pageProfile }, { data: profilePosts }] =
+          await Promise.all([
+            axiosReq.get(`/profiles/${id}`),
+            axiosReq.get(`/posts/?owner__profile=${id}`),
+          ]);
+        setProfileData((prevState) => ({
           ...prevState,
-          pageProfile: {results: [pageProfile]}
-        }))
+          pageProfile: { results: [pageProfile] },
+        }));
+        setProfilePosts(profilePosts);
         setHasLoaded(true);
-      } catch(err) {
-        console.log(err)
+      } catch (err) {
+        console.log(err);
       }
-    }
+    };
     fetchData();
   }, [id, setProfileData]);
 
@@ -109,8 +121,32 @@ function ProfilePage() {
   const mainProfilePosts = (
     <>
       <hr />
-      <p className="text-center">Profile owner's posts</p>
+      <p className="text-center">{profile?.owner}'s posts</p>
       <hr />
+      {profilePosts.results.length ? (
+        <InfiniteScroll
+          children={profilePosts.results.map((post) => (
+            <Post key={post.id} {...post} setPosts={setProfilePosts} />
+          ))}
+          dataLength={profilePosts.results.length}
+          loader={<Asset spinner />}
+          hasMore={!!profilePosts.next}
+          next={() => fetchMoreData(profilePosts, setProfilePosts)}
+        />
+      ) : (
+        <Container className={PostsPageStyles.noResultsContainer}>
+        <img
+          src={NoResults}
+          alt="No Results to display"
+          className={PostsPageStyles.noResultsImage}
+        />
+        <Asset message={`${profile?.owner} hasn't posted yet.`}></Asset>
+      </Container>
+
+            
+
+
+      )}
     </>
   );
 

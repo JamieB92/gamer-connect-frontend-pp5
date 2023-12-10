@@ -54,7 +54,7 @@ function NavBar() {
   <NavLink
     className={styles.NavLink}
     activeClassName={styles.Active}
-    to={`/profile/${currentUser?.profile_id}`}
+    to={`/profiles/${currentUser?.profile_id}`}
   >
     <UserAvatar src={currentUser?.profile_avatar} text=" Profile" height={38} />
   </NavLink>

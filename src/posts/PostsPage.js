@@ -11,6 +11,7 @@ import { axiosReq } from "../api/axiosDefaults";
 import NoResults from "../assets/no-results.jpg"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../utils/utils";
+import PopularProfiles from "../pages/profiles/PopularProfiles";
 
 
 function PostsPage({ message, filter = "" }) {
@@ -43,6 +44,11 @@ function PostsPage({ message, filter = "" }) {
 
   return (
     <div>
+      <Row>
+        <Col>
+          <PopularProfiles mobile />
+        </Col>
+      </Row>
       <Row className="h-100">
         <Col>
           <form
@@ -58,12 +64,12 @@ function PostsPage({ message, filter = "" }) {
             />
           </form>
         </Col>
-        <Col>
-            <p>Profiles</p>
-        </Col>
-
       </Row>
+      
       <Row className="h-100">
+      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+            <PopularProfiles />
+        </Col>
         <Col className="py-2 p-0 p-lg-2" lg={8}>
           {hasLoaded ? (
             <>

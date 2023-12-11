@@ -40,7 +40,7 @@ const ProfileEditForm = () => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
-          const { data } = await axiosReq.get(`/profiles/${id}/`);
+          const { data } = await axiosReq.get(`/profiles/${id}`);
           const { name, bio, profile_avatar, platform, platform_username } = data;
           setProfileData({ name, bio, profile_avatar, platform, platform_username });
         } catch (err) {
@@ -67,15 +67,15 @@ const ProfileEditForm = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("bio", bio);
-    formData.append("Platform", platform);
-    formData.append("Platform_username", platform_username);
+    formData.append("platform", platform);
+    formData.append("platform_username", platform_username);
 
     if (imageFile?.current?.files[0]) {
       formData.append("profile_avatar", imageFile?.current?.files[0]);
     }
 
     try {
-      const { data } = await axiosReq.put(`/profiles/${id}`, formData);
+      const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
       setCurrentUser((currentUser) => ({
         ...currentUser,
         profile_avatar: data.profile_avatar,
@@ -132,11 +132,11 @@ const ProfileEditForm = () => {
           name="platform"
           rows={7}
         >
-        <option value="xbox">Xbox</option>
-        <option value="playstation">Playstation</option>
-        <option value="steam">Steam</option>
-        <option value="nswitch">Nintendo Switch</option>
-        <option value="discord">Discord</option>
+        <option value="Xbox">Xbox</option>
+        <option value="Playstation">Playstation</option>
+        <option value="Steam">Steam</option>
+        <option value="Nintend Switch">Nintendo Switch</option>
+        <option value="Discord">Discord</option>
         </Form.Control>
       </Form.Group>
 
@@ -149,7 +149,7 @@ const ProfileEditForm = () => {
       <Form.Group>
         <Form.Label>Platform Username</Form.Label>
         <Form.Control
-          as="textarea"
+          type="textarea"
           value={platform_username}
           onChange={handleChange}
           name="platform_username"

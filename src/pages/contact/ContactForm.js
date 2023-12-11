@@ -13,9 +13,10 @@ const ContactForm = () => {
 
   const [contactData, setContactData] = useState({
     subject: "",
+    email: "",
     content: "",
   });
-  const { subject, content } = contactData;
+  const { subject, email, content } = contactData;
 
   const history = useHistory();
 
@@ -32,6 +33,7 @@ const ContactForm = () => {
 
     formData.append("subject", subject);
     formData.append("content", content);
+    formData.append("email", email);
 
     try {
       await axiosReq.post("/contact/", formData);
@@ -55,6 +57,21 @@ const ContactForm = () => {
         />
       </Form.Group>
       {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Form.Group>
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.email?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -87,6 +104,8 @@ const ContactForm = () => {
 
   return (
     <Container>
+      <h1>Contact Us</h1>
+      <p>Please reach out to us with any issues you are expeirencing or for any feedback</p>
       <Form onSubmit={handleSubmit}>
         <Container className={appStyles.Content}>{textFields}</Container>
       </Form>

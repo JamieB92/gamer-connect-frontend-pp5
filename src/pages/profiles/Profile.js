@@ -20,7 +20,7 @@ const Profile = (props) => {
       className={`my-3 d-flex align-items-center ${mobile && "flex-column"}`}
     >
       <div>
-        <Link className="align-self-center" to={`/profiles/${id}`}>
+        <Link className="align-self-center" to={`/profiles/${id}/`}>
           <Avatar src={profile_avatar} height={imageSize} />
         </Link>
       </div>

@@ -40,7 +40,7 @@ const ProfileEditForm = () => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
-          const { data } = await axiosReq.get(`/profiles/${id}`);
+          const { data } = await axiosReq.get(`/profiles/${id}/`);
           const { name, bio, profile_avatar, platform, platform_username } = data;
           setProfileData({ name, bio, profile_avatar, platform, platform_username });
         } catch (err) {

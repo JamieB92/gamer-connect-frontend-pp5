@@ -47,20 +47,6 @@ i:hover {
     color: #fafaf9;
 }
 
-
-.FillerImage {
-    object-fit: cover;
-    border-radius: 30px;
-    height: 100%;
-    width: 100%;
-  }
-  
-.Image {
-    max-height: 40vh;
-    max-width: 100%;
-    object-fit: fill; 
-  }
-  
 * {
     box-sizing: border-box;
   }

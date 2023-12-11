@@ -98,7 +98,7 @@ const Post = (props) => {
       </Card.Body>
       <Link to={`/posts/${id}`}>
         {upload_image ? (
-          <Card.Img src={upload_image} alt={post_header} />
+          <img className={styles.PostImg} src={upload_image} alt={post_header} />
         ) : upload_clip ? (
           <ReactPlayer
             url={upload_clip}

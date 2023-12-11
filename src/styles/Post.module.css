@@ -2,7 +2,7 @@
     background-color: #e0e0e0;
     border-radius: 25px;
     border: none;
-    margin-bottom: 16px;
+    margin: 16px;
     text-align: center;
   }
   
@@ -13,4 +13,11 @@
 
 .ownerName {
   margin: 10px;
+}
+
+.PostImg {
+  object-fit: fill;
+  width: 75%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
 }

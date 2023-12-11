@@ -4,3 +4,19 @@
     width: 120px;
     margin: 4px;
 }
+
+.ProfileContent {
+    background-color: #e0e0e0;
+    border-radius: 30px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.UserName {
+    margin: 20px;
+    padding: 5px;
+}
+
+.name {
+    font-size: 17px;
+}

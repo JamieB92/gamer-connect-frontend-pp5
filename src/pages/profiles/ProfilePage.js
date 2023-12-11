@@ -37,7 +37,6 @@ function ProfilePage() {
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
 
-  console.log("Profile id from params: ", id)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,7 +60,7 @@ function ProfilePage() {
   }, [id, setProfileData]);
 
   const mainProfile = (
-    <>
+    <div className={styles.ProfileContent}>
       {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
@@ -72,8 +71,15 @@ function ProfilePage() {
           />
         </Col>
         <Col lg={6}>
-          <h3 className="m-2">{profile?.owner}</h3>
-          <h5 className="p-3">{profile?.name}</h5>
+          <div className={styles.UserName}>
+            <h2>{profile?.owner}</h2>
+            {profile?.platform && <h5 className={styles.name}>{profile.name}</h5>}
+          </div>
+          <div>
+          {profile?.platform && <p>Prefered Platform: {profile.platform}</p>}
+          {profile?.platform_username && <p>Username: {profile.platform_username}</p>}
+          </div>
+        
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
               <div>{profile?.posts_count}</div>
@@ -110,14 +116,12 @@ function ProfilePage() {
         </Col>
         {profile?.bio && <Col className="p-3">{profile.bio}</Col>}
       </Row>
-      <Row>
-        
-      </Row>
-    </>
+      <Row></Row>
+    </div>
   );
 
   const mainProfilePosts = (
-    <>
+    <div className={styles.ProfileContent}>
       <hr />
       <p className="text-center">{profile?.owner}'s posts</p>
       <hr />
@@ -132,25 +136,24 @@ function ProfilePage() {
           next={() => fetchMoreData(profilePosts, setProfilePosts)}
         />
       ) : (
-        <Container >
+        <Container>
           <img
             src={NoResults}
             alt="No Results to display"
             className={PostStyles.noResultsImage}
           />
-        <Asset
-          message={`No results found, ${profile?.owner} hasn't posted yet.`}
-        />
+          <Asset
+            message={`No results found, ${profile?.owner} hasn't posted yet.`}
+          />
         </Container>
       )}
-    </>
+    </div>
   );
 
   return (
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <PopularProfiles mobile />
-        <Container className={appStyles.Content}>
+        <Container>
           {hasLoaded ? (
             <>
               {mainProfile}
@@ -159,7 +162,7 @@ function ProfilePage() {
           ) : (
             <Asset spinner />
           )}
-        </ Container>
+        </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />

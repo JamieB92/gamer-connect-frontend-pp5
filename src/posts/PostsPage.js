@@ -86,7 +86,7 @@ function PostsPage({ message, filter = "" }) {
                   next={() => fetchMoreData(posts, setPosts)}
                 />
               ) : (
-                <Container className={styles.noResultsImage}>
+                <Container>
                   <img
                     src={NoResults}
                     alt="No Results to display"

@@ -7,7 +7,6 @@ import Container from "react-bootstrap/Container";
 import Asset from "../../components/Assests";
 import PostStyles from "../../styles/PostsPage.module.css";
 import styles from "../../styles/ProfilePage.module.css";
-import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { ProfileEditDropdown } from "../../components/EditDeleteDropdown";
 import PopularProfiles from "./PopularProfiles";

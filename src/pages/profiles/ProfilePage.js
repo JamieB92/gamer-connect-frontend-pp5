@@ -22,7 +22,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Post from "../../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.jpg";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 
 const ProfilePage = () => {
@@ -104,10 +103,10 @@ const ProfilePage = () => {
             )}
           </div>
           <div>
-            {profile?.game_id && <p>Looking for friends to play with on:</p>}
+            {profile?.game_id && <p>Looking for friends to play with on </p>}
             {profile?.platform && <p>Prefered Platform: {profile.platform}</p>}
             {profile?.platform_username && (
-              <p>My Username is: {profile.platform_username}</p>
+              <p>Username: {profile.platform_username}</p>
             )}
           </div>
 

@@ -67,6 +67,7 @@ const CreateGamesForm = () => {
           name="name"
           value={name}
           onChange={handleChange}
+          rows={5}
         />
       </Form.Group>
       {errors?.name?.map((message, idx) => (
@@ -84,6 +85,7 @@ const CreateGamesForm = () => {
           name="content"
           value={content}
           onChange={handleChange}
+          rows={5}
         />
       </Form.Group>
       {errors?.content?.map((message, idx) => (
@@ -101,7 +103,7 @@ const CreateGamesForm = () => {
           value={friends}
           onChange={handleChange}
           name="friends"
-          rows={7}
+          rows={5}
         >
           <option value="Yes">Yes</option>
           <option value="No">No</option>
@@ -121,7 +123,7 @@ const CreateGamesForm = () => {
           value={experience}
           onChange={handleChange}
           name="experience"
-          rows={7}
+          rows={5}
         >
           <option value="Noob">Noob</option>
           <option value="Casual">Casual</option>

@@ -13,12 +13,11 @@ const Games = (props) => {
     profile_avatar,
     name,
     content,
-    looking_for_friends,
-    platform_username,
+    friends,
     experience,
     ProfilePage,
   } = props;
-
+// Renders the Games card
   return (
     <Card className={styles.Post}>
       <Card.Body>
@@ -26,27 +25,22 @@ const Games = (props) => {
           <Media className="align-items-center justify-content-between">
             <Link to={`/profiles/${profile_id}`}>
               <Avatar src={profile_avatar} height={80} />
-              <div className={styles.ownerName}>{owner}</div>
+              <div className={styles.ownerName}>&nbsp;{owner}</div>
             </Link>
 
           </Media>
         )}
         <p className="text-center">
-          I am Currently Playing:
-          {name}
+          I am Currently Playing &nbsp;{name}
         </p>
         <p className="text-center">
-          About:
           {content}
         </p>
         <p className="text-center">
-          Looking For Friends:
-          {looking_for_friends}
-          <span>{platform_username}</span>
+         <strong>Looking For Friends:&nbsp;{friends}</strong>
         </p>
         <p className="text-center">
-          Skill Level:
-          {experience}
+          Skill Level: &nbsp;{experience}
         </p>
       </Card.Body>
     </Card>

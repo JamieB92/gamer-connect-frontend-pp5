@@ -17,8 +17,10 @@ import btnStyles from "../styles/Button.module.css";
 
 import { axiosReq } from "../api/axiosDefaults";
 import { useHistory, useParams } from "react-router";
+import { useRedirect } from "../hooks/useRedirect";
 
 function CreatePostWithImageForm() {
+  useRedirect('loggedOut')
   const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({

@@ -16,6 +16,7 @@ import {
   Modal,
 } from "react-bootstrap";
 import axios from "axios";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
@@ -24,6 +25,8 @@ const SignUpForm = () => {
     password2: "",
   });
   const [show, setShow] = useState(false);
+
+  useRedirect('loggedIn')
 
   const handleClose = () => {
     setShow(false);

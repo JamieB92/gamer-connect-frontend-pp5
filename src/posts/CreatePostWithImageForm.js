@@ -10,8 +10,10 @@ import Asset from "../components/Assests";
 
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../api/axiosDefaults";
+import { useRedirect } from "../hooks/useRedirect";
 
 function CreatePostWithImageForm() {
+  useRedirect('loggedOut')
 
   const [errors, setErrors] = useState({});
 

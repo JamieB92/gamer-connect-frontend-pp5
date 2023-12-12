@@ -7,12 +7,14 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import appStyles from "../../App.module.css";
 import Asset from "../../assets/create-game.jpg";
 import styles from "../../styles/CreateGamesForm.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 // Form to create data 
 const CreateGamesForm = () => {
-  // redirect to home page if user is not logged in
-  // useRedirect ("loggedOut");
+
+  useRedirect("loggedOut");
+  
   const [errors, setErrors] = useState({});
   const currentUser = useCurrentUser();
   const id = currentUser?.profile_id;

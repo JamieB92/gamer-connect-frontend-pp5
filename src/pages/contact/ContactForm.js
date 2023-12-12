@@ -7,10 +7,12 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Button, Modal } from "react-bootstrap";
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 
 const ContactForm = () => {
+  useRedirect('loggedOut')
   const [errors, setErrors] = useState({});
 
   const [contactData, setContactData] = useState({

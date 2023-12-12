@@ -38,7 +38,7 @@ const ProfilePage = () => {
   const [profile] = pageProfile.results;
 
   const is_owner = currentUser?.username === profile?.owner;
-  const gameId = profile?.gameId;
+  const game_id = profile?.game_id;
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -46,8 +46,8 @@ const ProfilePage = () => {
 
   const handleDeleteGame = async () => {
     try {
-      await axios.delete(`/games/${gameId}/`);
-      await axiosRes.put(`/profiles/${id}/`, { gameId: null });
+      await axios.delete(`/games/${game_id}/`);
+      await axiosRes.put(`/profiles/${id}/`, { game_id: null });
       setGameData(null);
     } catch (err) {}
     handleClose();
@@ -67,7 +67,7 @@ const ProfilePage = () => {
         }));
         setProfilePosts(profilePosts);
         try {
-          const { data } = await axiosReq.get(`/games/${gameId}/`);
+          const { data } = await axiosReq.get(`/games/${game_id}/`);
           setGameData(data);
         } catch (err) {
           setGameData(null);
@@ -78,7 +78,7 @@ const ProfilePage = () => {
       }
     };
     handleMount();
-  }, [id, setProfileData, gameId]);
+  }, [id, setProfileData, game_id]);
 
   const mainProfile = (
     <div className={styles.ProfileContent}>
@@ -100,7 +100,7 @@ const ProfilePage = () => {
             {profile?.platform && <h5 className={styles.name}>{profile.name}</h5>}
           </div>
           <div>
-          {profile?.gameId && <p>Looking for friends to play with on:</p>}
+          {profile?.game_id && <p>Looking for friends to play with on:</p>}
           {profile?.platform && <p>Prefered Platform: {profile.platform}</p>}
           {profile?.platform_username && <p>My Username is: {profile.platform_username}</p>}
           </div>
@@ -190,7 +190,7 @@ const ProfilePage = () => {
               activeClassName={styles.Active}
               to="/games/create"> Tell everyone what you are playing currently!</Link>}
 
-              {profile?.gameId && is_owner && (
+              {profile?.game_id && is_owner && (
                 <button className={btnStyles.btnXsSmall} onClick={handleShow}>
                   Remove Game data
                 </button>

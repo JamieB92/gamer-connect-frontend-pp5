@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -26,20 +27,23 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     handleMount();
   }, []);
-// Request that will auto intercept any login inforamtion requested by the application login API
+  // Request that will auto intercept any login inforamtion requested by the application login API
   useMemo(() => {
     axiosReq.interceptors.request.use(
       async (config) => {
-        try {
-          await axios.post("/dj-rest-auth/token/refresh/");
-        } catch (err) {
-          setCurrentUser((prevCurrentUser) => {
-            if (prevCurrentUser) {
-              history.push("/signin");
-            }
-            return null;
-          });
-          return config;
+        if (shouldRefreshToken()) {
+          try {
+            await axios.post("/dj-rest-auth/token/refresh/");
+          } catch (err) {
+            setCurrentUser((prevCurrentUser) => {
+              if (prevCurrentUser) {
+                history.push("/signin");
+              }
+              return null;
+            });
+            removeTokenTimestamp()
+            return config;
+          }
         }
         return config;
       },
@@ -47,8 +51,8 @@ export const CurrentUserProvider = ({ children }) => {
         return Promise.reject(err);
       }
     );
-// Response to listen for when the API reponds 401 that the users access token has expired
-// This will the refresh the access token in the background 
+    // Response to listen for when the API reponds 401 that the users access token has expired
+    // This will the refresh the access token in the background
     axiosRes.interceptors.response.use(
       (response) => response,
       async (err) => {
@@ -62,6 +66,7 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
+            removeTokenTimestamp()
           }
           return axios(err.config);
         }

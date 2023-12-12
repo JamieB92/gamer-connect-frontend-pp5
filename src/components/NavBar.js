@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
@@ -32,7 +32,7 @@ function NavBar() {
       activeClassName={styles.Active}
       to="/posts/create"
     >
-      <i class="fa-solid fa-plus"></i> Create
+      <i className="fa-solid fa-plus"></i> Create
     </NavLink>
   );
   const loggedInIcons = (
@@ -42,7 +42,7 @@ function NavBar() {
         activeClassName={styles.Active}
         to="/feed"
       >
-        <i class="fas fa-stream"></i> Feed
+        <i className="fas fa-stream"></i> Feed
       </NavLink>
 
       <NavLink
@@ -51,7 +51,7 @@ function NavBar() {
         to="/liked"
         onClick={() => {}}
       >
-        <i class="fas fa-heart"></i> Liked
+        <i className="fas fa-heart"></i> Liked
       </NavLink>
 
       <NavLink
@@ -103,7 +103,7 @@ function NavBar() {
         activeClassName={styles.Active}
         to="signup"
       >
-        <i class="fa-solid fa-user-plus"></i> Sign Up
+        <i className="fa-solid fa-user-plus"></i> Sign Up
       </NavLink>
     </>
   );
@@ -134,7 +134,7 @@ function NavBar() {
             activeClassName={styles.Active}
             to="/"
           >
-            <i class="fa-solid fa-house-chimney"></i> Home
+            <i className="fa-solid fa-house-chimney"></i> Home
           </NavLink>
           {currentUser && addPostIcon}
           {currentUser ? loggedInIcons : loggedOutIcons}

@@ -57,7 +57,7 @@ function CreatePostWithImageForm() {
           ? setPostData({ post_header, caption, upload_clip, upload_image })
           : history.push("/");
       } catch (err) {
-        console.log(err);
+
       }
     };
     handleMount();
@@ -71,7 +71,6 @@ function CreatePostWithImageForm() {
   };
 
   const handleChangeImage = (event) => {
-    console.log("handleChangeImage invoked");
     if (event.target.files.length) {
       URL.revokeObjectURL(upload_image);
       setPostData({

@@ -62,7 +62,7 @@ const ProfileEditForm = () => {
             platform_username,
           });
         } catch (err) {
-          console.log(err);
+
           history.push("/");
         }
       } else {
@@ -100,7 +100,6 @@ const ProfileEditForm = () => {
       }));
       handleShow();
     } catch (err) {
-      console.log(err);
       setErrors(err.response?.data);
     }
   };

@@ -55,7 +55,7 @@ const SignUpForm = () => {
       handleShow();
     } catch (err) {
       setErrors(err.response?.data);
-      console.log(err.response)
+
     }
   };
 

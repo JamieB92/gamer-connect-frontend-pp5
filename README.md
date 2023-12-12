@@ -629,3 +629,27 @@ GamerConnect [Backend](https://github.com/JamieB92/Gamer-Connect-Backend-PP5/blo
 - No results image - https://www.freepik.com/free-vector/game-with-glitch-effect_7997336.htm#query=game%20over&position=0&from_view=search&track=ais&uuid=0e1e2267-04f0-4cb9-9f89-6bd8403ca94a
 - Serach Bar - https://uiverse.io/chethan025/tasty-gecko-98
 - Games Form - https://www.pexels.com/photo/white-xbox-one-game-controller-3593986/
+
+
+### Connect ElephantSQL instance to Db Visualizar
+
+- Install DB visualizar
+- Log into ElephantSQL 
+- Go to your istance
+- stay on details tab
+- Once DBVisualizer is installed start it up
+- Click on Create a Connection
+- Select driver name as PostGresSQL
+- This will take you to a new page
+- In the form enter following details from your isntance:
+
+    - Give your DB a name
+    - In the database Server enter your ElephantSql Server but leave out the inastance name in the bracket at the end so it looks like this:
+
+            {{name}}.db.elephantsql.com
+
+    - Take your User & Default database from Elephant SQL and enter it in the Database field and the Database UserId field in DbViusalizar
+    - Keep password source as `From Database Password Field`
+    - Copy your password from ElephantSQL and enter it in the Database Password field.
+    - Click Connect 
+

@@ -2,8 +2,8 @@ import React, { useState } from "react"
 import Dropdown from "react-bootstrap/Dropdown"
 import styles from "../styles/EditDeleteDropdown.module.css"
 import { useHistory } from "react-router";
-import Button from "react-bootstrap";
-import Modal from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 
 

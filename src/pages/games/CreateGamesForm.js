@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
-import { Alert, Form } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert"
+import Form  from "react-bootstrap/Form";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -155,7 +156,7 @@ const CreateGamesForm = () => {
       <div className={styles.container}>
         <img
           src={Asset}
-          alt="Image of a playstaion controller"
+          alt="Playstaion controller"
           className={styles.image}
         />
       </div>

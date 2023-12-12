@@ -3,12 +3,12 @@ import ReactPlayer from "react-player";
 import styles from "../styles/Post.module.css";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
-import { Button } from "react-bootstrap";
-import Card from "react-bootstrap";
-import Media from "react-bootstrap";
-import Modal from "react-bootstrap";
-import OverlayTrigger from "react-bootstrap";
-import Tooltip from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Media from "react-bootstrap/Media";
+import Modal from "react-bootstrap/Modal";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 import { Link, useHistory } from "react-router-dom";
 import UserAvatar from "../components/UserAvatar";

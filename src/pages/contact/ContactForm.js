@@ -6,7 +6,8 @@ import { useHistory } from "react-router-dom";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Button, Modal } from "react-bootstrap";
+import Button from "react-bootstrap/Button" 
+import Modal from "react-bootstrap/Modal";
 import { useRedirect } from "../../hooks/useRedirect";
 
 

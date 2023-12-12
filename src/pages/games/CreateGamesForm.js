@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
-import { Alert, Col, Container, Form } from "react-bootstrap";
+import { Alert, Container, Form } from "react-bootstrap";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import appStyles from "../../App.module.css"
+import appStyles from "../../App.module.css";
+import Asset from "../../assets/create-game.jpg";
+import styles from "../../styles/CreateGamesForm.module.css";
 
 
 // Form to create data 
@@ -18,12 +20,10 @@ const CreateGamesForm = () => {
   const [gameData, setGameData] = useState({
     name: "",
     content: "",
-    looking_for_friends: "",
+    friends: "",
     experience: "",
   });
-  const {
-    name, content, looking_for_friends, experience,
-  } = gameData;
+  const { name, content, friends, experience } = gameData;
 
   const history = useHistory();
 
@@ -40,14 +40,14 @@ const CreateGamesForm = () => {
 
     formData.append("name", name);
     formData.append("content", content);
-    formData.append("looking_for_friends", looking_for_friends);
+    formData.append("friends", friends);
     formData.append("experience", experience);
 
     try {
       // request to make new game
       const { data } = await axiosReq.post("/games/", formData);
       // add game to the profile id
-      await axiosRes.put(`/profiles/${id}/`, { gamesId: data.id });
+      await axiosRes.put(`/profiles/${id}/`, { game_id: data.id });
       // goes back to the page the user was on
       history.goBack();
     } catch (err) {
@@ -57,7 +57,6 @@ const CreateGamesForm = () => {
       }
     }
   };
-
 
   const textFields = (
     <div className="text-center">
@@ -76,7 +75,10 @@ const CreateGamesForm = () => {
         </Alert>
       ))}
       <Form.Group>
-        <Form.Label>Let everyone know a little bit about the game.</Form.Label>
+        <Form.Label>
+          Share a brief description of the game or the specific gaming interests
+          you'd like to connect over.
+        </Form.Label>
         <Form.Control
           as="textarea"
           name="content"
@@ -90,30 +92,35 @@ const CreateGamesForm = () => {
         </Alert>
       ))}
       <Form.Group>
-        <Form.Label>Are you looking to make friends?</Form.Label>
+        <Form.Label>
+          Gaming is better with friends! Do you want to expand your gaming
+          circle and connect with other gamers?
+        </Form.Label>
         <Form.Control
           as="select"
-          value={looking_for_friends}
+          value={friends}
           onChange={handleChange}
-          name="looking_for_friends"
+          name="friends"
           rows={7}
         >
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </Form.Control>
       </Form.Group>
-      {errors?.looking_for_friends?.map((message, idx) => (
+      {errors?.friends?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
       ))}
       <Form.Group>
-        <Form.Label>What is your skill level?</Form.Label>
+        <Form.Label>
+          Level Up: Share Your Gaming Prowess! What's Your Skill Level?
+        </Form.Label>
         <Form.Control
           as="select"
           value={experience}
           onChange={handleChange}
-          name="platform"
+          name="experience"
           rows={7}
         >
           <option value="Noob">Noob</option>
@@ -141,12 +148,16 @@ const CreateGamesForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Col md={5} lg={6} className="d-none d-md-block p-0 p-md-2 text-center">
-          <Container className={appStyles.Content}>{textFields}</Container>
-      </Col>
+      <div className={styles.container}>
+        <img
+          src={Asset}
+          alt="Image of a playstaion controller"
+          className={styles.image}
+        />
+      </div>
+      <div className={appStyles.Content}>{textFields}</div>
     </Form>
-  )
-
+  );
 };
 
 export default CreateGamesForm;

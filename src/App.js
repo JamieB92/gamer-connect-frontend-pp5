@@ -16,6 +16,7 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import ContactForm from "./pages/contact/ContactForm";
 import CreateGamesForm from "./pages/games/CreateGamesForm";
+import GamesPage from "./pages/games/GamesPage"
 
 
 function App() {
@@ -77,6 +78,7 @@ function App() {
           />
           <Route exact path="/contact/create/"render={() => <ContactForm />}/>
           <Route exact path="/games/create/" render={() => <CreateGamesForm />} />
+          <Route exact path="/games" render={() => <GamesPage />}/>
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

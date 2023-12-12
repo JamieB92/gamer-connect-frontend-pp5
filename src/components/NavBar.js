@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
@@ -72,7 +72,16 @@ function NavBar() {
         to="/contact/create"
       >
         <i className="fa-brands fa-hire-a-helper"></i>
-        Contact Us
+        Contact
+      </NavLink>
+
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/games/"
+      >
+        <i className="fa-solid fa-gamepad"></i>
+        Games
       </NavLink>
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
         <i className="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
@@ -106,33 +115,31 @@ function NavBar() {
       fixed="top"
       className={styles.NavBar}
     >
-      <Container>
-        <NavLink to="/">
-          <Navbar.Brand>
-            <img src={logo} alt="Logo" height={50} /> GamerConnect
-          </Navbar.Brand>
-        </NavLink>
+      <NavLink to="/">
+        <Navbar.Brand>
+          <img src={logo} alt="Logo" height={45} /> GamerConnect
+        </Navbar.Brand>
+      </NavLink>
 
-        <Navbar.Toggle
-          ref={ref}
-          onClick={() => setExpanded(!expanded)}
-          aria-controls="basic-navbar-nav"
-        />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto text-right">
-            <NavLink
-              exact
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/"
-            >
-              <i class="fa-solid fa-house-chimney"></i> Home
-            </NavLink>
-            {currentUser && addPostIcon}
-            {currentUser ? loggedInIcons : loggedOutIcons}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
+      <Navbar.Toggle
+        ref={ref}
+        onClick={() => setExpanded(!expanded)}
+        aria-controls="basic-navbar-nav"
+      />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto text-right">
+          <NavLink
+            exact
+            className={styles.NavLink}
+            activeClassName={styles.Active}
+            to="/"
+          >
+            <i class="fa-solid fa-house-chimney"></i> Home
+          </NavLink>
+          {currentUser && addPostIcon}
+          {currentUser ? loggedInIcons : loggedOutIcons}
+        </Nav>
+      </Navbar.Collapse>
     </Navbar>
   );
 }

@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import { useLocation } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Game from "./Game";
-import Asset from "../../components/Asset";
+import Asset from "../../components/Assests";
 import NoResults from "../../assets/no-results.jpg";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
@@ -63,7 +63,7 @@ const GamesPage = ({ message, filter = "" }) => {
               onChange={(event) => setQuery(event.target.value)}
               type="text"
               className={styles.searchBar}
-              placeholder="Search games bing played"
+              placeholder="Search games"
             />
           </form>
         </Col>
@@ -80,13 +80,13 @@ const GamesPage = ({ message, filter = "" }) => {
                 <InfiniteScroll 
                   children={
                     games.results.map((game) => (
-                      <Game key={game.id} {...game} setPosts={setGames} />
+                      <Game key={game.id} {...game} setGames={setGames} />
                     ))
                   }
                   dataLength={games.results.length}
                   loader={< Asset spinner />}
-                  hasMore={!!posts.next}
-                  next={() => fetchMoreData(games, setGamess)}
+                  hasMore={!!games.next}
+                  next={() => fetchMoreData(games, setGames)}
                 />
               ) : (
                 <Container>

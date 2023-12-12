@@ -1,7 +1,12 @@
-import React from "react"
+import React, { useState } from "react"
 import Dropdown from "react-bootstrap/Dropdown"
 import styles from "../styles/EditDeleteDropdown.module.css"
 import { useHistory } from "react-router";
+import { Button, Modal } from "react-bootstrap";
+
+
+
+
 
 const DropdownIcon = React.forwardRef(({ onClick }, ref) => (
     <i
@@ -15,6 +20,11 @@ const DropdownIcon = React.forwardRef(({ onClick }, ref) => (
   ));
   
   export const MoreDropdown = ({ handleEdit, handleDelete }) => {
+    const [show, setShow] = useState(false);
+
+    const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
+
     return (
       <Dropdown className="ml-auto" drop="left">
         <Dropdown.Toggle as={DropdownIcon} />
@@ -29,14 +39,33 @@ const DropdownIcon = React.forwardRef(({ onClick }, ref) => (
           </Dropdown.Item>
           <Dropdown.Item
             className={styles.DropdownItem}
-            onClick={handleDelete}
+            onClick={handleShow}
             aria-label="delete"
           >
             <i className="fas fa-trash-alt" />
           </Dropdown.Item>
         </Dropdown.Menu>
-      </Dropdown>
-    );
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Confirm Delete</Modal.Title>
+                </Modal.Header>
+                  <Modal.Body>
+                    Are you sure you want to delete this post?
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                       Cancel
+                    </Button>
+                    <Button
+                      varient="Primary"
+                      onClick={handleDelete}
+                    >
+                      Confirm
+                    </Button>
+                  </Modal.Footer>
+                </Modal>    
+          </Dropdown>
+    )
   };
  
   export function ProfileEditDropdown({ id }) {
@@ -76,5 +105,6 @@ const DropdownIcon = React.forwardRef(({ onClick }, ref) => (
         </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
+        
     );
   }

@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 
 export const useRedirect = (userAuthStatus) => {
   const history = useHistory();
-
+// User redirect hook
   useEffect(() => {
     const handleMount = async () => {
       try {

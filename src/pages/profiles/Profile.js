@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/UserAvatar";
 import { useSetProfileData } from "../../contexts/ProfileDataContext";
 
+// User Profile 
 const Profile = (props) => {
   const { profile, mobile, imageSize = 55 } = props;
   const { id, following_id, profile_avatar, owner } = profile;

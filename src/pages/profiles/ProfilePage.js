@@ -24,6 +24,9 @@ import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.jpg";
 import axios from "axios";
 
+// Individual User profile page
+// Displays all users posts, games and profile data
+
 const ProfilePage = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({ results: [] });

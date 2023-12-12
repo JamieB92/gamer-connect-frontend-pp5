@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Container } from "react-bootstrap";
+import { Col, Row, Container } from "";
+
+import Col from "react-bootstrap";
+import Row from "react-bootstrap";
+import Container from "react-bootstrap";
+
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import appStyles from "../App.module.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
@@ -12,7 +17,7 @@ import Asset from "../components/Assests"
 import { fetchMoreData } from "../utils/utils";
 import PopularProfiles from "../pages/profiles/PopularProfiles";
 
-
+// Page to display the single post with the comments attached to it
 
 function PostPage() {
   const { id } = useParams();

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -13,6 +12,8 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+
+// Form to to allow the user to chane their username
 
 const UserPasswordForm = () => {
   const history = useHistory();
@@ -86,18 +87,18 @@ const UserPasswordForm = () => {
                 {message}
               </Alert>
             ))}
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+            <button
+              className={btnStyles.btnXsSmall}
               onClick={() => history.goBack()}
             >
               cancel
-            </Button>
-            <Button
+            </button>
+            <button
+              className={btnStyles.btnXsSmall}
               type="submit"
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
             >
               save
-            </Button>
+            </button>
           </Form>
         </Container>
       </Col>

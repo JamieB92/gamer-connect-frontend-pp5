@@ -2,7 +2,8 @@ import React, { useState } from "react"
 import Dropdown from "react-bootstrap/Dropdown"
 import styles from "../styles/EditDeleteDropdown.module.css"
 import { useHistory } from "react-router";
-import { Button, Modal } from "react-bootstrap";
+import Button from "react-bootstrap";
+import Modal from "react-bootstrap";
 
 
 
@@ -26,6 +27,7 @@ const DropdownIcon = React.forwardRef(({ onClick }, ref) => (
     const handleClose = () => setShow(false);
 
     return (
+      // post and comment drop down
       <Dropdown className="ml-auto" drop="left">
         <Dropdown.Toggle as={DropdownIcon} />
 
@@ -46,6 +48,8 @@ const DropdownIcon = React.forwardRef(({ onClick }, ref) => (
           </Dropdown.Item>
         </Dropdown.Menu>
         <Modal show={show} onHide={handleClose}>
+         
+         {/* Cofirm delete model*/}  
             <Modal.Header closeButton>
               <Modal.Title>Confirm Delete</Modal.Title>
                 </Modal.Header>
@@ -67,7 +71,7 @@ const DropdownIcon = React.forwardRef(({ onClick }, ref) => (
           </Dropdown>
     )
   };
- 
+ // Profile edit Dropdown menu
   export function ProfileEditDropdown({ id }) {
     const history = useHistory();
     return (
@@ -75,12 +79,14 @@ const DropdownIcon = React.forwardRef(({ onClick }, ref) => (
         <Dropdown.Toggle as={DropdownIcon} />
         <Dropdown.Menu>
           <Dropdown.Item
+          // sends user to edit profile form
             onClick={() => history.push(`/profiles/${id}/edit`)}
             aria-label="edit-profile"
           >
             <i className="fas fa-edit" /> edit profile
           </Dropdown.Item>
           <Dropdown.Item
+          // sends user to edit username form
             onClick={() => history.push(`/profiles/${id}/edit/username`)}
             aria-label="edit-username"
           >
@@ -88,6 +94,7 @@ const DropdownIcon = React.forwardRef(({ onClick }, ref) => (
             change username
           </Dropdown.Item>
           <Dropdown.Item
+          //send users to change password form
             onClick={() => history.push(`/profiles/${id}/edit/password`)}
             aria-label="edit-password"
           >

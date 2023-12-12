@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Form,
-  Button,
-  Row,
-  Col,
-  Container,
-  Image,
-  Alert,
-  Modal,
-} from "react-bootstrap";
+
+import Form from "react-bootstrap"
+import Button from "react-bootstrap";
+import Row from "react-bootstrap";
+import Col from "react-bootstrap";
+import Container from "react-bootstrap";
+import Image from "react-bootstrap";
+import Alert from "react-bootstrap";
+import Modal from "react-bootstrap";
+
 import ReactPlayer from "react-player";
 
 import styles from "../styles/CreatePostEditForm.module.css";
@@ -18,6 +18,9 @@ import btnStyles from "../styles/Button.module.css";
 import { axiosReq } from "../api/axiosDefaults";
 import { useHistory, useParams } from "react-router";
 import { useRedirect } from "../hooks/useRedirect";
+
+// Postedit form
+// allow for data in the post to be edited
 
 function CreatePostWithImageForm() {
   useRedirect('loggedOut')

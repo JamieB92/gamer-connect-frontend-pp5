@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import ReactPlayer from "react-player";
 import styles from "../styles/Post.module.css";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-import {
-  Button,
-  Card,
-  Media,
-  Modal,
-  OverlayTrigger,
-  Tooltip,
-} from "react-bootstrap";
+
+import { Button } from "react-bootstrap";
+import Card from "react-bootstrap";
+import Media from "react-bootstrap";
+import Modal from "react-bootstrap";
+import OverlayTrigger from "react-bootstrap";
+import Tooltip from "react-bootstrap";
+
 import { Link, useHistory } from "react-router-dom";
 import UserAvatar from "../components/UserAvatar";
 import { axiosRes } from "../api/axiosDefaults";
@@ -32,6 +32,8 @@ const Post = (props) => {
     postPage,
     setPosts,
   } = props;
+
+  // Post - display all the information in a the post
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -95,6 +97,7 @@ const Post = (props) => {
   return (
     <Card className={styles.Post}>
       <Card.Body>
+        {/* Posts drop down menu */}
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
             <UserAvatar src={profile_avatar} height={55} />
@@ -109,6 +112,7 @@ const Post = (props) => {
               />
             )}
           </div>
+          {/* Model that confirms deletion of a post */}
         </Media>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -123,6 +127,7 @@ const Post = (props) => {
         </Modal>
       </Card.Body>
       <Link to={`/posts/${id}`}>
+        {/* checks to see if the post is image or a video */}
         {upload_image ? (
           <img
             className={styles.PostImg}

@@ -19,6 +19,9 @@ import appStyles from "../../App.module.css";
 import { Button, Modal } from "react-bootstrap";
 import { useRedirect } from "../../hooks/useRedirect";
 
+// User profile edit form
+// Allows the user to edit their profile data
+
 const ProfileEditForm = () => {
   useRedirect('loggedOut')
   const currentUser = useCurrentUser();

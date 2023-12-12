@@ -14,7 +14,7 @@ import appStyles from "../../App.module.css";
 import styles from "../../styles/PostsPage.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 
-
+// GamesPage where it displays all the games that are currently being played
 
 const GamesPage = ({ message, filter = "" }) => {
   const [games, setGames] = useState({ results: [] });

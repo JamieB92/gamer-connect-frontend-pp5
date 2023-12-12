@@ -133,7 +133,7 @@ const SignUpForm = () => {
             Already have an account? <span>Sign in</span>
           </Link>
         </Container>
-
+          {/*Congratulations model on signup */}
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Congratulations and Welcome</Modal.Title>
@@ -141,7 +141,7 @@ const SignUpForm = () => {
           <Modal.Body>You have succesfully signed up to GamerConnect!</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-              Please sing in with you credentials
+              Please sign in with you credentials
             </Button>
           </Modal.Footer>
         </Modal>

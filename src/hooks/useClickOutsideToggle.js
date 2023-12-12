@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
+// Hook to allow the user to click and close the nav bar when they are on smaller screens
+
 const useClickOutsideToggle = () => {
   
   

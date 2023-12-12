@@ -1,5 +1,12 @@
 import React, { useRef ,useState } from "react";
-import {Form, Button, Row, Col, Container, Alert} from "react-bootstrap";
+
+import Form from "react-bootstrap";
+import Button from "react-bootstrap"
+import Row from "react-bootstrap"; 
+import Col from "react-bootstrap";
+import Container from "react-bootstrap";
+import Alert from "react-bootstrap";
+
 import ReactPlayer from 'react-player'
 import Upload from "../assets/upload.png"
 import styles from "../styles/CreatePostEditForm.module.css";
@@ -10,6 +17,8 @@ import Asset from "../components/Assests";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../api/axiosDefaults";
 import { useRedirect } from "../hooks/useRedirect";
+
+// // Create a post with an video form
 
 function CreatePostWithVideoForm() {
   useRedirect('loggedOut')

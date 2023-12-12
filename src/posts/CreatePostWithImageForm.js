@@ -1,5 +1,11 @@
 import React, { useRef ,useState } from "react";
-import {Form, Button, Row, Col, Container, Image, Alert} from "react-bootstrap";
+import Form from "react-bootstrap";
+import Button from "react-bootstrap"
+import Row from "react-bootstrap"; 
+import Col from "react-bootstrap";
+import Container from "react-bootstrap";
+import Image from "react-bootstrap";
+import Alert from "react-bootstrap";
 
 import Upload from "../assets/upload.png"
 
@@ -12,6 +18,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../api/axiosDefaults";
 import { useRedirect } from "../hooks/useRedirect";
 
+// Create a post with an image form
 function CreatePostWithImageForm() {
   useRedirect('loggedOut')
 

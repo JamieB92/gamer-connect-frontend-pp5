@@ -6,7 +6,7 @@ import btnStyles from "../styles/Button.module.css"
 
 class PostForm extends Component{ 
 
-    
+    // Displats either the create post with an image form or post with a video
 
     constructor(props) {
         super(props);
@@ -16,7 +16,7 @@ class PostForm extends Component{
             pageHeader: "Upload A Image"
         };
     } 
-
+// handles the switch to the video form
     handleChangeFormToVideo() {
         this.setState({
             isForm: <CreatePostWithVideoForm />,

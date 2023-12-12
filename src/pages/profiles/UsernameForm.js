@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -16,6 +15,8 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+
+// Form to to allow the user to chane their username
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
@@ -70,18 +71,18 @@ const UsernameForm = () => {
                 {message}
               </Alert>
             ))}
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+            <button
+              className={btnStyles.btnXsSmall}
               onClick={() => history.goBack()}
             >
               cancel
-            </Button>
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+            </button>
+            <button
+              className={btnStyles.btnXsSmall}
               type="submit"
             >
               save
-            </Button>
+            </button>
           </Form>
         </Container>
       </Col>

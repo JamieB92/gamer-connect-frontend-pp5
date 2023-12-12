@@ -13,6 +13,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../utils/utils";
 import PopularProfiles from "../pages/profiles/PopularProfiles";
 
+// Page that displays all posts
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });

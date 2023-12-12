@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
+import { Button, Modal } from "react-bootstrap";
+
 
 
 const ContactForm = () => {
@@ -19,6 +21,14 @@ const ContactForm = () => {
   const { subject, email, content } = contactData;
 
   const history = useHistory();
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+        setShow(false);
+        history.goBack();
+  } 
+  const handleShow = () => setShow(true);
 
   const handleChange = (event) => {
     setContactData({
@@ -37,7 +47,7 @@ const ContactForm = () => {
 
     try {
       await axiosReq.post("/contact/", formData);
-      history.goBack();
+      handleShow();
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
@@ -109,7 +119,25 @@ const ContactForm = () => {
       <Form onSubmit={handleSubmit}>
         <Container className={appStyles.Content}>{textFields}</Container>
       </Form>
+
+      <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Confirmed</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Thanks we will get back to you shortly
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Confirm
+            </Button>
+          </Modal.Footer>
+        </Modal>
     </Container>
+
   );
 };
 

@@ -7,6 +7,7 @@ import {
   Container,
   Image,
   Alert,
+  Modal,
 } from "react-bootstrap";
 import ReactPlayer from "react-player";
 
@@ -26,6 +27,15 @@ function CreatePostWithImageForm() {
     upload_image: "",
     upload_clip: "",
   });
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+        setShow(false);
+        history.push(`/posts/${id}`);
+  } 
+  const handleShow = () => setShow(true);
+
 
   const { post_header, caption, upload_image, upload_clip } = postData;
 
@@ -95,7 +105,7 @@ function CreatePostWithImageForm() {
 
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
-      history.push(`/posts/${id}`);
+      handleShow();
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
@@ -223,6 +233,17 @@ function CreatePostWithImageForm() {
         <Col>
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Confirmed Edit</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>You have succesfully edited your Post!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Ok
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Row>
     </Form>
   );

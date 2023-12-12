@@ -16,6 +16,7 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import { Button, Modal } from "react-bootstrap";
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
@@ -30,19 +31,34 @@ const ProfileEditForm = () => {
     profile_avatar: "",
     platform: "",
     platform_username: "",
-
   });
-  const {name, bio, profile_avatar, platform, platform_username } = profileData;
+  const { name, bio, profile_avatar, platform, platform_username } =
+    profileData;
 
   const [errors, setErrors] = useState({});
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+    setShow(false);
+    history.goBack();
+  };
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}`);
-          const { name, bio, profile_avatar, platform, platform_username } = data;
-          setProfileData({ name, bio, profile_avatar, platform, platform_username });
+          const { name, bio, profile_avatar, platform, platform_username } =
+            data;
+          setProfileData({
+            name,
+            bio,
+            profile_avatar,
+            platform,
+            platform_username,
+          });
         } catch (err) {
           console.log(err);
           history.push("/");
@@ -80,7 +96,7 @@ const ProfileEditForm = () => {
         ...currentUser,
         profile_avatar: data.profile_avatar,
       }));
-      history.goBack();
+      handleShow();
     } catch (err) {
       console.log(err);
       setErrors(err.response?.data);
@@ -132,11 +148,11 @@ const ProfileEditForm = () => {
           name="platform"
           rows={7}
         >
-        <option value="Xbox">Xbox</option>
-        <option value="Playstation">Playstation</option>
-        <option value="Steam">Steam</option>
-        <option value="Nintend Switch">Nintendo Switch</option>
-        <option value="Discord">Discord</option>
+          <option value="Xbox">Xbox</option>
+          <option value="Playstation">Playstation</option>
+          <option value="Steam">Steam</option>
+          <option value="Nintend Switch">Nintendo Switch</option>
+          <option value="Discord">Discord</option>
         </Form.Control>
       </Form.Group>
 
@@ -215,6 +231,17 @@ const ProfileEditForm = () => {
         <Col md={5} lg={6} className="d-none d-md-block p-0 p-md-2 text-center">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Confirmed Edit</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>You have succesfully edited your Profile!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Ok
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Row>
     </Form>
   );

@@ -1,13 +1,19 @@
-import React from 'react'
-import ReactPlayer from 'react-player'
-import styles from "../styles/Post.module.css"
-import { useCurrentUser } from '../contexts/CurrentUserContext';
-import { Card, Media, OverlayTrigger, Tooltip} from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
-import UserAvatar from '../components/UserAvatar';
-import { axiosRes } from '../api/axiosDefaults';
-import { MoreDropdown } from '../components/EditDeleteDropdown';
-
+import React, { useState } from "react";
+import ReactPlayer from "react-player";
+import styles from "../styles/Post.module.css";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
+import {
+  Button,
+  Card,
+  Media,
+  Modal,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
+import UserAvatar from "../components/UserAvatar";
+import { axiosRes } from "../api/axiosDefaults";
+import { MoreDropdown } from "../components/EditDeleteDropdown";
 
 const Post = (props) => {
   const {
@@ -32,6 +38,15 @@ const Post = (props) => {
 
   const history = useHistory();
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+    setShow(false);
+    history.goBack();
+  };
+
+  const handleShow = () => setShow(true);
+
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
   };
@@ -39,43 +54,43 @@ const Post = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
-      history.goBack();
+      handleShow();
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   const handleLike = async () => {
     try {
-      const {data} = await axiosRes.post('/likes/', {post:id})
+      const { data } = await axiosRes.post("/likes/", { post: id });
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) => {
           return post.id === id
-          ? {...post, likes_count: post.likes_count + 1, like_id: data.id}
-          :post; 
+            ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+            : post;
         }),
       }));
-    } catch(err){
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   const handleUnLike = async () => {
     try {
-      const {data} = await axiosRes.delete(`/likes/${like_id}/`)
+      const { data } = await axiosRes.delete(`/likes/${like_id}/`);
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) => {
           return post.id === id
-          ? {...post, likes_count: post.likes_count - 1, like_id: data.id}
-          :post; 
+            ? { ...post, likes_count: post.likes_count - 1, like_id: data.id }
+            : post;
         }),
       }));
-    } catch(err){
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   return (
     <Card className={styles.Post}>
@@ -88,17 +103,32 @@ const Post = (props) => {
           <div className="d-flex align-items-center">
             <span>{edited_on}</span>
             {is_owner && postPage && (
-              <MoreDropdown 
+              <MoreDropdown
                 handleEdit={handleEdit}
-                handleDelete={handleDelete} 
+                handleDelete={handleDelete}
               />
             )}
           </div>
         </Media>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Confirm Delete</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Your Post has been deleted</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Okay
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Card.Body>
       <Link to={`/posts/${id}`}>
         {upload_image ? (
-          <img className={styles.PostImg} src={upload_image} alt={post_header} />
+          <img
+            className={styles.PostImg}
+            src={upload_image}
+            alt={post_header}
+          />
         ) : upload_clip ? (
           <ReactPlayer
             url={upload_clip}
@@ -150,4 +180,4 @@ const Post = (props) => {
   );
 };
 
-export default Post
+export default Post;

@@ -13,6 +13,7 @@ import {
   Row,
   Container,
   Alert,
+  Modal,
 } from "react-bootstrap";
 import axios from "axios";
 
@@ -22,6 +23,15 @@ const SignUpForm = () => {
     password1: "",
     password2: "",
   });
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+    setShow(false);
+    history.push("/signin");
+  };
+  const handleShow = () => setShow(true);
+
+
   const { username, password1, password2 } = signUpData;
 
   const [errors, setErrors] = useState({});
@@ -39,7 +49,7 @@ const SignUpForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/signin");
+      handleShow();
     } catch (err) {
       setErrors(err.response?.data);
       console.log(err.response)
@@ -120,6 +130,18 @@ const SignUpForm = () => {
             Already have an account? <span>Sign in</span>
           </Link>
         </Container>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Congratulations and Welcome</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>You have succesfully signed up to GamerConnect!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Please sing in with you credentials
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Col>
     </Row>
   );

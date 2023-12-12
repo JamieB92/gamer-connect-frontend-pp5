@@ -26,12 +26,12 @@ a {
 
 a:hover {
     text-decoration: none;
-    color: #fafaf9;
+    color: #d97706;
   }
 
 a:hover i {
     transition: color ease-in-out 0.2s;
-    color: #fafaf9;
+    color: #d97706;
 } 
 
 i {
@@ -44,7 +44,7 @@ i {
 i:hover {
     cursor: pointer;
     transition: color ease-in-out 0.2s;
-    color: #fafaf9;
+    color: #d97706;
 }
 
 * {

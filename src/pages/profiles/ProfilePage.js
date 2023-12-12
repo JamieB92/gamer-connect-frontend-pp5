@@ -59,7 +59,7 @@ const ProfilePage = () => {
         const [{ data: pageProfile }, { data: profilePosts }] =
           await Promise.all([
             axiosReq.get(`/profiles/${id}/`),
-            axiosReq.get(`/posts/?owner__profile=${id}`)
+            axiosReq.get(`/posts/?owner__profile=${id}`),
           ]);
         setProfileData((prevState) => ({
           ...prevState,
@@ -82,10 +82,12 @@ const ProfilePage = () => {
 
   const mainProfile = (
     <div className={styles.ProfileContent}>
-      {profile?.is_owner && <ProfileEditDropdown 
-      id={profile?.id} 
-      handleDeleteGame={handleDeleteGame}
-      />}
+      {profile?.is_owner && (
+        <ProfileEditDropdown
+          id={profile?.id}
+          handleDeleteGame={handleDeleteGame}
+        />
+      )}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
@@ -97,14 +99,18 @@ const ProfilePage = () => {
         <Col lg={6}>
           <div className={styles.UserName}>
             <h2>{profile?.owner}</h2>
-            {profile?.platform && <h5 className={styles.name}>{profile.name}</h5>}
+            {profile?.platform && (
+              <h5 className={styles.name}>{profile.name}</h5>
+            )}
           </div>
           <div>
-          {profile?.game_id && <p>Looking for friends to play with on:</p>}
-          {profile?.platform && <p>Prefered Platform: {profile.platform}</p>}
-          {profile?.platform_username && <p>My Username is: {profile.platform_username}</p>}
+            {profile?.game_id && <p>Looking for friends to play with on:</p>}
+            {profile?.platform && <p>Prefered Platform: {profile.platform}</p>}
+            {profile?.platform_username && (
+              <p>My Username is: {profile.platform_username}</p>
+            )}
           </div>
-        
+
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
               <div>{profile?.posts_count}</div>
@@ -141,16 +147,13 @@ const ProfilePage = () => {
         </Col>
         {profile?.bio && <Col className="p-3">{profile.bio}</Col>}
       </Row>
-      <Row></Row>
     </div>
   );
 
   const mainProfilePosts = (
-    <div className={styles.ProfileContent}>
-      <hr />
-      <p className="text-center">{profile?.owner}'s posts</p>
-      <hr />
+    <>
       {profilePosts.results.length ? (
+        <div className={styles.Post}>
         <InfiniteScroll
           children={profilePosts.results.map((post) => (
             <Post key={post.id} {...post} setPosts={setProfilePosts} />
@@ -160,6 +163,8 @@ const ProfilePage = () => {
           hasMore={!!profilePosts.next}
           next={() => fetchMoreData(profilePosts, setProfilePosts)}
         />
+        </div> 
+
       ) : (
         <Container>
           <img
@@ -172,29 +177,21 @@ const ProfilePage = () => {
           />
         </Container>
       )}
-    </div>
-  );
+
+          </> );
 
   return (
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Container>
           {hasLoaded ? (
-            <div>
-              <div>
-                {mainProfile}
-              </div>
-              <div>
-              {profile?.is_owner && <Link 
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/games/create"> Tell everyone what you are playing currently!</Link>}
-
+            <>
               {profile?.game_id && is_owner && (
                 <button className={btnStyles.btnXsSmall} onClick={handleShow}>
-                  Remove Game data
+                  Remove Game
                 </button>
               )}
+              {mainProfile}
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title>Confirm Deletion</Modal.Title>
@@ -214,14 +211,9 @@ const ProfilePage = () => {
                   </button>
                 </Modal.Footer>
               </Modal>
-              {gameData && (
-                <Game {...gameData} isProfilePage showAll />
-              )}
-              </div>
-              <div>
-                {mainProfilePosts}
-              </div>
-            </div>
+              {gameData && <Game {...gameData} isProfilePage showAll />}
+              <div>{mainProfilePosts}</div>
+            </>
           ) : (
             <Asset spinner />
           )}
@@ -232,6 +224,6 @@ const ProfilePage = () => {
       </Col>
     </Row>
   );
-}
+};
 
 export default ProfilePage;

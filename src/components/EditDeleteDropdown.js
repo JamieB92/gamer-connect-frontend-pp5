@@ -65,6 +65,15 @@ const DropdownIcon = React.forwardRef(({ onClick }, ref) => (
             <i className="fas fa-key" />
             change password
           </Dropdown.Item>
+
+          <Dropdown.Item
+          // sends user to create game form
+          onClick={() => history.push("/games/create")}
+          aria-label="Add Game"
+        >
+          <i className="fa-solid fa-plus"></i>
+          Add a game
+        </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     );

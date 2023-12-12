@@ -7,6 +7,11 @@
 
 .NavLink {
     padding: 10px;
+    color: #0c0a09;
+}
+
+.dropdown-toggle {
+    background-color: blue;
 }
 
 .Active i {

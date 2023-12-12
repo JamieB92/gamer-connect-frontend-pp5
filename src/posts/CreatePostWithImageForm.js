@@ -21,7 +21,7 @@ import { useRedirect } from "../hooks/useRedirect";
 
 // Create a post with an image form
 function CreatePostWithImageForm() {
-  useRedirect('loggedOut')
+  useRedirect("loggedOut")
 
   const [errors, setErrors] = useState({});
 

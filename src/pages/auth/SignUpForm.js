@@ -25,7 +25,7 @@ const SignUpForm = () => {
   });
   const [show, setShow] = useState(false);
 
-  useRedirect('loggedIn')
+  useRedirect("loggedIn")
 
   const handleClose = () => {
     setShow(false);

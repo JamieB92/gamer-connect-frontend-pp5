@@ -23,7 +23,7 @@ import { useRedirect } from "../hooks/useRedirect";
 // allow for data in the post to be edited
 
 function CreatePostWithImageForm() {
-  useRedirect('loggedOut')
+  useRedirect("loggedOut")
   const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({

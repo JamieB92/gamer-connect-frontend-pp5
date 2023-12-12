@@ -13,7 +13,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 
 
 const ContactForm = () => {
-  useRedirect('loggedOut')
+  useRedirect("loggedOut")
   const [errors, setErrors] = useState({});
 
   const [contactData, setContactData] = useState({

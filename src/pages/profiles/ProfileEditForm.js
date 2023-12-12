@@ -23,7 +23,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 // Allows the user to edit their profile data
 
 const ProfileEditForm = () => {
-  useRedirect('loggedOut')
+  useRedirect("loggedOut")
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();

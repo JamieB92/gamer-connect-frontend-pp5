@@ -128,12 +128,12 @@ const CreateGamesForm = () => {
           name="experience"
           rows={5}
         >
-          <option value="Noob">Noob</option>
-          <option value="Casual">Casual</option>
-          <option value="Pro">Pro</option>
-          <option value="Veteran">Veteran</option>
-          <option value="Master">Master</option>
-          <option value="God">God</option>
+          <option value='Noob'>Noob</option>
+          <option value='Casual'>Casual</option>
+          <option value='Pro'>Pro</option>
+          <option value='Veteran'>Veteran</option>
+          <option value='Master'>Master</option>
+          <option value='God'>God</option>
         </Form.Control>
       </Form.Group>
       {errors?.experience?.map((message, idx) => (

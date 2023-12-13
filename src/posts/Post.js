@@ -140,6 +140,7 @@ const Post = (props) => {
             controls={true}
             width="700"
             height="500"
+            alt={post_header}
           />
         ) : (
           <></>

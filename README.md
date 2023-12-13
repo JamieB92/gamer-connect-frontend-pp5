@@ -1019,7 +1019,22 @@ Test Steps:
 
 Result: Users can successfully create and delete game posts. The information is accurately displayed in the game section and on the user's profile, ensuring that users can share their current gaming preferences and connect with others.
 
-#### API Testing
+## React -ES Lint Validator
+
+Regrettably, when I first learned about eslint, I faced challenges in the installation process and encountered difficulties in configuring it to work seamlessly. Unfortunately, these issues, combined with time constraints, prevented me from conducting a thorough test with eslint. I will aim to integrate eslint into the project moving forward to ensure a more robust and reliable code quality check in the future.
+
+
+## LightHouse testing
+
+![LightHouse](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702460394/lighthouse_lyrfze.png)
+
+During the Lighthouse testing, it was observed that the performance was below the desired standard. 
+This outcome, attributed to the the amount images and videos being rendered, suggests an opportunity for improvement in subsequent iterations by implementing image and video compression before the upload process.<br>
+Unfortunately, the time constraints this has not been released.
+
+
+
+## API Testing
 
 The APIs underwent local testing in the development phase, with the primary testing conducted as an integral part of the front-end repositories. This included manual testing of the actual APIs through form inputs and page loads.
 

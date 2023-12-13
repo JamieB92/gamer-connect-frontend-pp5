@@ -96,13 +96,14 @@ const ProfilePage = () => {
             className={styles.ProfileAvatar}
             roundedCircle
             src={profile?.profile_avatar}
+            alt="GamerConnect  Profile avatar"
           />
         </Col>
         <Col lg={6}>
           <div className={styles.UserName}>
             <h2>{profile?.owner}</h2>
             {profile?.platform && (
-              <h5 className={styles.name}>{profile.name}</h5>
+              <strong><p className={styles.name}>{profile.name}</p></strong>
             )}
           </div>
           <div>

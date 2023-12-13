@@ -6,7 +6,9 @@ Welcome to GamerConnect, the ultimate social media platform for gamers!
 
 GamerConnect is a dynamic and inclusive platform designed for gamers of all ages and backgrounds. Whether you're a seasoned pro or just starting your gaming journey, our platform is tailored to bring the gaming community together.
 
-This is the Frontend Repo for the project please click [here](https://github.com/JamieB92/Gamer-Connect-Backend-PP4) for the backend repo.
+This is the Frontend Repo for the backend repo please click [here](https://github.com/JamieB92/Gamer-Connect-Backend-PP4).
+
+For the live site - https://gamer-connect-625bab79a49e.herokuapp.com/
 
 ## Features
 - Game Clips & Screenshots: Share your gaming triumphs, epic moments, and funniest fails with our intuitive media uploading features.
@@ -250,6 +252,50 @@ As a comment owner, I want to be able to edit and delete my comments, giving me 
 Users who own comments can easily modify their contributions using simple and user-friendly options. The platform seamlessly integrates editing features, allowing individuals to quickly adjust their posts for accuracy or clarity without any hassle. 
 The delete function is seamlessly integrated, providing an efficient way for comment owners to swiftly remove their content. These straightforward processes empowers users to keep their comments relevant and aligned with their intentions.
 
+### Display GamerConnects most popular profiles
+
+#### User Story
+
+As a GamerConnect user, I want to effortlessly find and connect with popular profiles in the gaming community.
+
+![commentedit](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702443258/pp_fum1du.png)
+
+When users log in, they'll find a section on the homepage highlighting popular profiles with pictures and usernames.
+<br> Clicking on a profile thumbnail takes users directly to the detailed profile view, making it easy to discover and connect with influential gamers.
+
+### User Following & Unfollowing
+
+#### User Story
+As a GamerConnect user, I want to be able to follow and unfollow other gamers.
+
+![follow](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702443764/follow_qphzou.png)
+
+Users can easily follow and unfollow other gamers, enhancing their ability to connect within the gaming community. The platform accurately records and displays the user's following status for others, providing transparency in connections and allowing users to manage their network with ease.
+
+### Connect Through Shared Gaming Interests
+
+#### User Story
+I want to explore what games others are playing and showcase my own,
+So I can connect with fellow gamers looking for friends.
+
+![games](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702444267/games_kj3btq.png)
+
+ Users can explore the gaming preferences of others and exhibit their own. Game cards provide clear information, including the game title, user details, and whether they're seeking gaming friends.
+
+## Future Feature Ideas
+
+### Messaging System:
+
+- Objective: Enable direct communication.
+- Description: Introduce an integrated messaging system for users to coordinate gaming sessions, discuss strategies, and connect with others who share similar interests.
+- Benefits: Facilitates real-time communication, enhances community engagement, and centralizes user interactions.
+
+### Streaming Capability:
+
+- Objective: Share gaming experiences through live streams.
+- Description: Integrate a streaming feature allowing users to broadcast gameplay live, fostering community engagement and enabling gamers to showcase their skills and strategies.
+- Benefits: Enhances content diversity, encourages user-generated content, and provides a dynamic platform for showcasing gaming prowess.
+
 ## Design
 
 ### Colors: 
@@ -262,9 +308,6 @@ The delete function is seamlessly integrated, providing an efficient way for com
 ![color-palete](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702439162/wf-home_arpvbh.png)
 
 ![color-palete](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702439162/wf-profile_fi5jdl.png)
-
-
-
 
 
  # Setup and Deployment

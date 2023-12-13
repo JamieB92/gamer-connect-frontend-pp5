@@ -33,6 +33,18 @@ This is the Frontend Repo for the project please click [here](https://github.com
 ## Feedback and Contributions
 - We welcome your feedback and contributions to make GamerConnect even better. Feel free to report issues, suggest improvements, and contribute to our open-source development.
 
+## Planning: 
+
+![Kanban](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702439184/kanban_m7uori.png)
+
+This project was executed following agile methodologies, employing incremental sprints to deliver small features. 
+The project's Kanban board was established using GitHub Projects, and additional details can be accessed [here](https://github.com/users/JamieB92/projects/6). 
+<br>This board provides an overview of the project cards and their respective statuses. 
+
+![Kanban](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702439173/Screenshot_2023-12-12_164712_ctofpc.png)
+
+I structured the database with PostgreSQL due to its reliability and advanced features. <br> 
+To visualize and manage the schema, I employed DbVisualizer, enabling a detailed examination of tables and relationships. 
 
 # User Stories
 
@@ -237,9 +249,16 @@ The delete function is seamlessly integrated, providing an efficient way for com
 ### Colors: 
 ![color-palete](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702438428/colors_wienin.png)
 
-### Font - Google Font - Lexend
+### Font - Google Font Lexend
 
-### WireFrames
+### Layout:
+
+![color-palete](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702439162/wf-home_arpvbh.png)
+
+![color-palete](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702439162/wf-profile_fi5jdl.png)
+
+
+
 
 
  # Setup and Deployment

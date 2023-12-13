@@ -21,7 +21,7 @@ class PostForm extends Component{
         this.setState({
             isForm: <CreatePostWithVideoForm />,
             buttonText: "Video Selected",
-            pageHeader: "Upload A Video Clip"
+            pageHeader: "Upload A Clip"
         })
     }
 

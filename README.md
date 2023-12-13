@@ -131,7 +131,7 @@ As a developer, it's crucial to create a database and integrate it into the proj
 #### User Story: 
 As a GamerConnect user, I want a responsive navbar that allows me to easily move between different pages on the site.
 
-#### Image Place Holder
+![Navbar](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702440903/navbar_e71pqk.png)
 
 A navigation bar has been implemented, transitioning into a hamburger menu on smaller devices to prevent navigation item overlap. This ensures users can access and navigate the site seamlessly on devices of any size. The navbar is user-friendly, allowing easy navigation and smooth transitions between each page.
 The Navbar shows distinct icons based on the user's sign-in status, enabling them to easily distinguish whether they are logged in or out.
@@ -141,7 +141,7 @@ The Navbar shows distinct icons based on the user's sign-in status, enabling the
 #### User Story:
 As a GamerConnect user, I want to create a new account to enjoy all the benefits available to registered users.
 
-#### Placeholder image
+![singupform](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702441030/signupform_j6pccu.png)
 
 A user-friendly sign-up page has been introduced, providing a clear and straightforward registration process. This enables users to register with GamerConnect, establishing a profile for them upon registration. After completing the registration, users are directed to a login page where they can access their account using the created username and password. Once logged in, users gain access to all privileges reserved for the GamerConnect Community.
 
@@ -150,7 +150,7 @@ A user-friendly sign-up page has been introduced, providing a clear and straight
 #### User Story
 As a GamerConnect user, I aim to share my gaming experiences by crafting posts with an image, facilitating connections with the gaming community.
 
-#### Placeholder Image
+![imagepostform](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702441583/imagepostform_h5haxj.png)
 
 For a registered user, a user-friendly form has been developed to effortlessly facilitate post creation. This not only encourages users to express their creativity but also contributes to the growth of the community and enhances the overall application experience. The form has been designed to be straightforward and intuitive, ensuring a seamless and enjoyable posting process for users.
 
@@ -159,7 +159,7 @@ For a registered user, a user-friendly form has been developed to effortlessly f
 #### User Story
 As a GamerConnect user, I aim to share my gaming experiences by crafting posts with a video, facilitating connections with the gaming community.
 
-#### Placeholder Image
+![videopostform](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702441585/clipuploadform_j7hvyh.png)
 
 For a registered user, a user-friendly form has been developed to effortlessly facilitate post creation. This not only encourages users to express their creativity but also contributes to the growth of the community and enhances the overall application experience. The form has been designed to be straightforward and intuitive, ensuring a seamless and enjoyable posting process for users.
 
@@ -169,7 +169,7 @@ For a registered user, a user-friendly form has been developed to effortlessly f
 #### User Story
 As a GamerConnect user, I want to easily browse through the newest posts on the site.
 
-#### PlaceHolder image
+![allposts](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702441518/allposts_wrvrbr.png)
 
 Users can effortlessly navigate through the content available on GamerConnect using the seamlessly designed post page. The interface provides a user-friendly platform where individuals can leisurely scroll through an organized presentation of the freshest posts. 
 This ensures that users indulge in a fluid and instinctive browsing encounter, enhancing their overall exploration of the latest updates and engaging content.
@@ -179,7 +179,8 @@ This ensures that users indulge in a fluid and instinctive browsing encounter, e
 #### User Story
 As a GamerConnect user, I want to check out individual posts to learn more about interesting gaming posts.
 
-#### Placeholder image
+![indvpost](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702441811/Screenindvidualpost_b8yu3d.png)
+
 
 Upon selecting a post of interest, users are directed to the post view interface, where they can delve into a detailed examination of the individual post. Within this post view, users gain the ability to explore the content more comprehensively and engage further by perusing all associated comments. This seamless transition provides users with an immersive experience, enabling them to interact extensively with the content and participate in the broader community conversation surrounding the post.
 
@@ -188,7 +189,7 @@ Upon selecting a post of interest, users are directed to the post view interface
 #### User Story
 As a GamerConnect user, I want to show my liking for interesting posts to express support.
 
-#### Placeholder image
+![like](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702441584/like_ehqxnx.png)
 
 Users have the opportunity to convey their endorsement and encouragement on GamerConnect through the simple yet impactful action of liking posts. 
 This interactive feature serves as a precise gauge, effectively mirroring users' genuine appreciation for captivating and noteworthy content within the platform. 
@@ -200,7 +201,7 @@ Engaging in the process of liking a post has been designed to be effortlessly st
 
 As a GamerConnect user, I aim to search for posts and user profiles using keywords to find content and gamers matching my interests.
 
-#### Placeholder image
+![search](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702441968/keywordsearch_cf8n6e.png)
 
 Users can easily find posts and user profiles on GamerConnect by using relevant keywords. The search function accurately retrieves content aligned with the entered keywords, ensuring a simple and smooth experience through the user-friendly interface.
 
@@ -211,7 +212,11 @@ Users can easily find posts and user profiles on GamerConnect by using relevant 
 
 As a GamerConnect post owner, I want to be able to edit my post title and description for accuracy and updates.
 
-#### Placeholder
+
+![edit1](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702441583/editpost1_xlmsvb.png)
+
+![edit2](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702441582/editpost_form_kc5nrr.png)
+
 
 Users can easily change their posts by clicking on the options icon on the post and selecting edit, making it simple to keep their content up-to-date. This user-friendly feature ensures quick and accurate updates to titles and descriptions, making the experience dynamic. By allowing easy edits, this encourages users to take charge of their content, adding their own touch and making the community stronger.
 
@@ -219,7 +224,7 @@ Users can easily change their posts by clicking on the options icon on the post 
 
 As a GamerConnect user, I want to delete my posts this will allow me to manage my content.
 
-#### Placeholder
+![edit1](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702441582/delete_rl2sbg.png)
 
 Post owners can easily delete their posts with a designated icon. The process is user-friendly and accessible, allowing post owners to manage their content effortlessly.
 
@@ -229,7 +234,7 @@ Post owners can easily delete their posts with a designated icon. The process is
 
 As a GamerConnect user, I want to join post conversations by commenting, sharing thoughts, and interacting with fellow gamers.
 
-#### Placeholder
+![comment](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702441586/comment_dt6xrv.png)
 
 On GamerConnect, users can easily add comments to posts. The platform accurately shows user comments in post discussions. Commenting is simple and user-friendly, encouraging gamers to engage with each other.
 
@@ -239,7 +244,8 @@ On GamerConnect, users can easily add comments to posts. The platform accurately
 
 As a comment owner, I want to be able to edit and delete my comments, giving me control over the content in the app.
 
-#### Placeholder
+![commentedit](https://res.cloudinary.com/dxxzc99pz/image/upload/v1702441581/commentcontrol_xor1vt.png)
+
 
 Users who own comments can easily modify their contributions using simple and user-friendly options. The platform seamlessly integrates editing features, allowing individuals to quickly adjust their posts for accuracy or clarity without any hassle. 
 The delete function is seamlessly integrated, providing an efficient way for comment owners to swiftly remove their content. These straightforward processes empowers users to keep their comments relevant and aligned with their intentions.

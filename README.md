@@ -6,9 +6,9 @@ Welcome to GamerConnect, the ultimate social media platform for gamers!
 
 GamerConnect is a dynamic and inclusive platform designed for gamers of all ages and backgrounds. Whether you're a seasoned pro or just starting your gaming journey, our platform is tailored to bring the gaming community together.
 
-This is the Frontend Repo for the backend repo please click [here](https://github.com/JamieB92/Gamer-Connect-Backend-PP4).
+This is the Frontend Repo for the backend repo please click [here](https://github.com/JamieB92/Gamer-Connect-Backend-PP5).
 
-For the live site - https://gamer-connect-625bab79a49e.herokuapp.com/
+For the live site - https://gamer-connect-frontend-pp5.vercel.app/ (backend API: https://gamer-connect-backend-pp5.onrender.com/)
 
 ## Features
 - Game Clips & Screenshots: Share your gaming triumphs, epic moments, and funniest fails with our intuitive media uploading features.
@@ -523,192 +523,72 @@ Note: Gitpod will change the dev server URL every so often so update when needed
 
 ## Backend Deployment 
 
-### ElephantSQL(Database):
-- Navigate to https://www.elephantsql.com/
-- Click Login/Creat a account.
-- Click "Create New Instance".
-- Create a name for the instance.
-- Select Tiny Turtle.
-- Leave Tags empty and click "Select Region".
-- Select your region.
-- Click Review in the bottom right corner.
-- Click Create instance.
-- Click on your newly created instance.
-- Copy the URL of the instance.
-- Go to Heroku 
-- Click on settings and reveal config vars
-- set the key as DATABASE_URL and paste in the url in the value :
+This backend was originally deployed on Heroku with ElephantSQL as the database. Heroku discontinued its free tier, so it has since been re-deployed on Render (site hosting) with Neon (database) and Cloudinary (media hosting), all on free tiers.
 
-       [DATABASE_URL]   [postgres://xxxxxxxxxxxxxxxxxxxxx]
+### Neon (Database):
 
-- Now go back to your IDE 
-- Run pip3 install dj_database_url==0.5.0 psycopg2 in the terminal
-- go to settings.py and import dj_database_url underneath the import for os
+- Navigate to https://neon.com/ and sign up/log in.
+- Click "Create a project" and give it a name (e.g. `gamer-connect-pp5`).
+- Once created, copy the connection string from the project dashboard (starts with `postgresql://`) — this is your `DATABASE_URL`.
+- Neon's own web console includes a SQL editor and table browser, so a separate tool like DB Visualizer isn't needed to inspect the database.
 
-        import os
-        import dj_database_url
-- Still in settings.py update the DATABASES section with the following: 
+### Cloudinary (Media File Hosting):
 
-        if 'DEV' in os.environ:
-            DATABASES = {
-                'default': {
-                    'ENGINE': 'django.db.backends.sqlite3',
-                    'NAME': BASE_DIR / 'db.sqlite3',
-                }
-            }
-        else:
-            DATABASES = {
-                default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-            }
+- Navigate to https://cloudinary.com/ and sign up/log in.
+- From the Dashboard, copy the "API Environment variable" value (starts with `cloudinary://`) — this is your `CLOUDINARY_URL`.
 
-- add you db url to env.py :
+### Render (Site Hosting):
 
-        os.environ['DATABASE_URL'] = "<your PostgreSQL URL here>"
+- Navigate to https://render.com/ and sign up/log in.
+- Click "New +" then "Web Service".
+- Connect your GitHub account and select this repository.
+- Set the following (this replaces the repo's `Procfile`, which Render doesn't use — Build/Start Commands are configured directly in the dashboard instead):
+    - Runtime: Python 3
+    - Build Command: `pip install -r requirements.txt`
+    - Start Command: `python manage.py migrate --skip-checks && gunicorn gamer_connect_api.wsgi --bind 0.0.0.0:$PORT`
+- Under the "Environment" tab, add the following environment variables:
+    - `SECRET_KEY`: (a freshly generated secret key — do not reuse an old one)
+    - `DATABASE_URL`: (the Neon connection string from above)
+    - `CLOUDINARY_URL`: (the Cloudinary URL from above)
+    - `ALLOWED_HOST`: (the `.onrender.com` domain Render assigns this service — `settings.py` already reads this into `ALLOWED_HOSTS`)
+    - `CLIENT_ORIGIN`: (the deployed frontend's URL, e.g. its Vercel domain — `settings.py` already reads this into `CORS_ALLOWED_ORIGINS`)
+    - `PYTHON_VERSION`: `3.10.13` (this project uses Django 3.2, which isn't guaranteed to work on newer Python versions)
+    - Do **not** set `DEV` — that switches to SQLite and session-based auth for local development, not the production Postgres/JWT setup.
+- Click "Create Web Service". Render will build and deploy automatically from the connected branch on every push.
 
-- Temporarly comment out DEV so that the external db can connect to your IDE
-- Go back to settings.py and add a print satement at the bottom of the database if else statement:
+**Notes on the Start Command above:**
+- Render's free tier does not include interactive Shell access, and has no equivalent of Heroku's Procfile `release` phase, so one-off management commands (`migrate`) are chained directly into the Start Command instead.
+- `--skip-checks` is required on the first `migrate` run: Django's system checks import the URL config before the database tables exist, which can deadlock the very first deploy on an empty database if any app queries the database at import time.
+- Render provides the port to bind to via a `$PORT` environment variable — `gunicorn gamer_connect_api.wsgi --bind 0.0.0.0:$PORT` binds to it explicitly, since gunicorn's default (`127.0.0.1:8000`) isn't reachable by Render's router.
+- No `collectstatic` step is needed here — this project has no `STATIC_ROOT` configured, since it's a JSON API rather than a server-rendered site.
 
-        
-        if 'DEV' in os.environ:
-            DATABASES = {
-                'default': {
-                    'ENGINE': 'django.db.backends.sqlite3',
-                    'NAME': BASE_DIR / 'db.sqlite3',
-                }
-            }
-        else:
-            DATABASES = {
-                default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-            }
-            print("connected")
+**Creating an admin superuser (no Shell access on the free tier):**
+- Temporarily add `DJANGO_SUPERUSER_USERNAME`, `DJANGO_SUPERUSER_EMAIL`, and `DJANGO_SUPERUSER_PASSWORD` environment variables in Render.
+- Temporarily extend the Start Command to `... && python manage.py createsuperuser --noinput; gunicorn gamer_connect_api.wsgi --bind 0.0.0.0:$PORT` (note the `;` rather than `&&` before `gunicorn`, so a future redeploy won't fail once the user already exists).
+- Once confirmed working via `/admin/`, remove the three `DJANGO_SUPERUSER_*` environment variables and simplify the Start Command back down again.
 
-- -–dry-run your makemigrations with following in the terminal:
+**Verifying CORS is scoped correctly to the frontend:**
 
-    python3 manage.py makemigrations --dry-run
+        curl -H "Origin: <frontend-url>" <backend-url>/dj-rest-auth/user/ -I
 
-- if succesful connection is made you should see connected in the terminal
-- Remove print statement
-- Run python3 manage.py migrate
-- Create yourself a super user for the database by running - python3 manage.py createsuperuser
-- Follow the steps to create your superuser username and password
-- Confirm this has been added by going back to Elephantsql
-- click on your instance 
-- select browser in the left navigation
-- Click the table queries and select auth_user
-- When you click execute you should now see your new superuser
+A correctly configured deployment returns matching `access-control-allow-origin` and `access-control-allow-credentials: true` headers, rather than allowing every origin.
 
-### IDE Setup For Deployment: 
+**Free tier limitation:** Render's free web services spin down after 15 minutes without traffic. Render's 750 free instance-hours/month are also shared across your whole workspace rather than per-service, so it isn't possible to keep multiple free backends always-on at the same time. The first request after a period of inactivity can take 30–60 seconds while the service wakes back up.
 
-- In the terminal of your IDE run - pip3 install gunicorn django-cors-headers
-- Run in the terminal - pip freeze --local > requirements.txt
-- Create a Profile in the top level of the project (Needed for Heroku)
-- Add the following to the Procfile: 
+## Frontend Deployment
 
-        release: python manage.py makemigrations && python manage.py migrate
-        web: gunicorn gamer_connect_api.wsgi
+This frontend was originally deployed on Heroku (as a static build served via `serve`, see the `heroku-prebuild` script in `package.json`). Heroku discontinued its free tier, so it has since been re-deployed on Vercel, on its free Hobby plan.
 
-- Go to settings.py and take your Heroku app's URL and add to ALLOWED_HOSTS
+- Navigate to https://vercel.com/ and sign up/log in.
+- Click "Add New" then "Project", and import this repository from GitHub.
+- Vercel auto-detects the Create React App preset (Build Command `npm run build`, Output Directory `build`) — no extra configuration is needed.
+- Click "Deploy".
 
-        ALLOWED_HOSTS = ['localhost', '{{your_app_name}}.herokuapp.com']
-- Add corsheaders to INSTALLED_APPS underneath dj_rest_auth.registration
+**Note on `package.json`:** the `engines.node` field was originally pinned to `16.19.1` for Heroku. That version is now end-of-life, and Vercel rejects it outright at build time with an explicit error naming the version it requires. It's been updated to `"node": "24.x"`, and the paired old `npm` version pin was dropped entirely since it predates Node 24.
 
-        INSTALLED_APPS = [
+Once deployed, update `src/api/axiosDefaults.js` so `axios.defaults.baseURL` points at the deployed backend's Render URL, and add the frontend's Vercel URL as the `CLIENT_ORIGIN` environment variable on the Render backend service (see the Backend Deployment section above) — both sides need to reference each other's live URL for cross-origin requests and cookie-based auth to work.
 
-            'dj_rest_auth.registration',
-            'corsheaders',
-        ]
-
-- Add corsheaders middleware to the TOP of the MIDDLEWARE
-
-            SITE_ID = 1
-            MIDDLEWARE = [
-                'corsheaders.middleware.CorsMiddleware',
-                ...
-            ]
-- Under the MIDDLEWARE list, set the ALLOWED_ORIGINS for the network requests made to the server with the following code:
-
-            if 'CLIENT_ORIGIN' in os.environ:
-                CORS_ALLOWED_ORIGINS = [
-                    os.environ.get('CLIENT_ORIGIN')
-                ]
-            else:
-                CORS_ALLOWED_ORIGIN_REGEXES = [
-                    r"^https://.*\.gitpod\.io$",
-
-- Enable sending cookies in cross-origin requests to allow users to use authentication.
-
-            else:
-                CORS_ALLOWED_ORIGIN_REGEXES = [
-                    r"^https://.*\.gitpod\.io$",
-                ]
-
-            CORS_ALLOW_CREDENTIALS = True
-
-
-- Set the JWT_AUTH_SAMESITE attribute to 'None' to allow the front end and the API to talk between different platforms
-            
-            JWT_AUTH_COOKIE = 'my-app-auth'
-            JWT_AUTH_REFRESH_COOKE = 'my-refresh-token'
-            JWT_AUTH_SAMESITE = 'None'
-
-- Remove the default SECRET_KEY and replace with the following to use env.py
-
-            SECRET_KEY = os.getenv('SECRET_KEY')
-    
-- Create a NEW value for your SECRET_KEY environment variable and add it to env.py file:
-
-            os.environ.setdefault("SECRET_KEY", "YourNewKey")
-
-
-- Set DEBUG to be True only if the DEV environment variable exists.
-
-            DEBUG = 'DEV' in os.environ
-
-- Comment DEV back in env.py
-
-- Run - pip freeze --local > requirements.txt
-- Add, Commit & Push to Github
-
-
-
-### Connect ElephantSQL instance to Db Visualizar
-
-- Install DB visualizar
-- Log into ElephantSQL 
-- Go to your istance
-- stay on details tab
-- Once DBVisualizer is installed start it up
-- Click on Create a Connection
-- Select driver name as PostGresSQL
-- This will take you to a new page
-- In the form enter following details from your isntance:
-
-    - Give your DB a name
-    - In the database Server enter your ElephantSql Server but leave out the inastance name in the bracket at the end so it looks like this:
-
-            {{name}}.db.elephantsql.com
-
-    - Take your User & Default database from Elephant SQL and enter it in the Database field and the Database UserId field in DbViusalizar
-    - Keep password source as `From Database Password Field`
-    - Copy your password from ElephantSQL and enter it in the Database Password field.
-    - Click Connect 
-
-### Heroku Deployment
-
-- Go to the "Settings" tab and click "Reveal Config Vars."
-- Add the following configuration variables:
-- SECRET_KEY: (Your secret key)
-- DATABASE_URL: (You should already have this if you created an elephantSQL PostGresdb)
-- CLOUNDINARY_URL: (Cloudinary API URL)
-- DISABLE_COLLECTSTATIC: 1
-- Click the "Deploy" tab.
-- Scroll down to "Connect to GitHub" and sign in/authorize when prompted.
-- In the search box, locate the repository you wish to deploy and click "Connect."
-- Scroll down to "Manual Deploy" and select the main branch.
-- Click "Deploy."
-- The app should now be successfully deployed.
-
-
+**Free tier note:** unlike Render, Vercel's Hobby plan doesn't spin the frontend down when idle (it's served as a static build from Vercel's CDN) — the cold-start delay described above only affects the backend API calls, not the frontend page load itself.
 
 ## Testing :
 
@@ -1063,16 +943,16 @@ Presented below is a comprehensive list of bugs identified during the developmen
 The identified issue is a known bug preventing the application from opening on Apple mobile devices on various browsers. Specifically, when users attempt to log in, they are redirected back to the login page. This bug stems from the failure to save cookies in the local storage. 
 #### To address this issue on Safari web browsers, it is necessary to disable "Prevent Cross-Site Tracking" in the browser settings.
 
-For a further release I am looking at resolving this by deploying both the Heroku apps to one domain which I believe will resolve the issue.
+For a further release I am looking at resolving this by deploying both apps to one domain which I believe will resolve the issue (this is still relevant now that the apps are on Render and Vercel, since they're still on two different domains).
 I have linked in the issue the steps needed to take to do this and will be looking to implement in the new year.
 
 ## Techonlogies Used
 - React
 - Django Rest Framework
 - Bootstrap
-- Heroku
-- ElephantSQL
-- VisualizerDB
+- Render
+- Neon
+- Cloudinary
 - Github
 - Gitpod
 - Git
